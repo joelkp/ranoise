@@ -51,7 +51,7 @@ static inline int32_t SAU_ranoise32(uint32_t n) {
 	 * fails. Subtle audio qualities vary with the number; 16 seems smooth.
 	 */
 	s *= SAU_ROR32(s, s + 16);
-	s ^= (s >> 6) ^ (s >> 15); // improve worse lower bits using the higher
+	s ^= (s >> 6) ^ (s >> 15); // improve worse lower bits with higher bits
 	return s;
 }
 
