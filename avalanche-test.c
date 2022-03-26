@@ -36,6 +36,17 @@ int32_t ranoise32(uint32_t x) {
 	return x;
 }
 
+/*
+ * The pattern is similar, but the series of zero output values won't
+ * be zero any longer. They now at least vary well in the lower bits.
+ */
+int32_t ranoise32b(uint32_t x) {
+	x *= FIBH32;
+	x = (x | 1) * ROR32(x, x + 14);
+	x ^= (x >> 7) ^ (x >> 16);
+	return x;
+}
+
 #define TESTFUNC ranoise32
 #define TESTFROM 0
 
