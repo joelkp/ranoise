@@ -1,7 +1,7 @@
 Random access noise algorithm & test programs
 =============================================
 
-This repository contains a copy of my "ranoise" algorithm. It also contains test programs which generate a stream of pseudo-random `int` data sent to `stdout` for test purposes.
+This repository contains a copy of my "ranoise" algorithm. It also contains test programs, both my own tests and for generating a stream of pseudo-random `int` data sent to `stdout` for test purposes.
 
 The basic idea of "ranoise" is to use a simple counter as state for random number generation, to be changed with some positive or negative frequency; chaotic waveshaping transforms the current counter value to the pseudo-random number it indexes. A stream of noise is produced by looping through the use of a ranoise function, calling it with the different counter values. Random access within a noise stream is also allowed, by simply changing the argument of the ranoise function. Given the simplicity of the function, it's a good alternative to storing and using arrays of random data, and the randomness is not too shabby either.
 
@@ -18,7 +18,7 @@ The bare functions
 int32_t ranoise32(uint32_t x) {
         x *= 2654435769UL;
         x *= (x >> ((x + 14) & 31)) | (x << (32-((x + 14) & 31)));
-        x ^= (x >> 6) ^ (x >> 15);
+        x ^= (x >> 7) ^ (x >> 16);
         return x;
 }
 ```
@@ -26,7 +26,7 @@ int32_t ranoise32(uint32_t x) {
 Running dieharder tests
 -----------------------
 
-If you install [dieharder](https://webhome.phy.duke.edu/~rgb/General/dieharder.php), then you can run a program from this repository through it as follows:
+If you install [dieharder](https://webhome.phy.duke.edu/~rgb/General/dieharder.php), then you can run a program named after a function from this repository through it as follows:
 
 ```
 make && ./ranoise32 | dieharder -a -g 200
