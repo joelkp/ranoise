@@ -56,11 +56,11 @@ static inline int32_t SAU_ranoise32(uint32_t n) {
 }
 
 int main(int argc, char *argv[]) {
-        int i = 0;
-        for (;;) {
-                /* chaos whaveshaper test */
-                uint32_t x = i++;
+	int i = 0;
+	for (;;) {
+		/* chaos whaveshaper test */
+		uint32_t x = i++;
 		putw(SAU_ranoise32(x), stdout);
-        }
-        return 0;
+	}
+	return 0;
 }

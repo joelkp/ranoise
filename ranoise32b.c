@@ -29,10 +29,9 @@
 
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
- * simple, number sequences into something similar to white noise. Returns zero
- * for zero. The frequency spectrum when used with a counter is flat. This is a
- * slightly more complicated version of SAU_ranoise32(), and passes more tests.
- * It's more generally suitable as a non-cryptographic random number generator.
+ * simple, number sequences into white noise. Returns zero for zero. This is an
+ * improved version of SAU_ranoise32(), which passes more statistical tests and
+ * with small overhead is more suitable for general non-cryptographic purposes.
  *
  * This function is mainly an alternative to using buffers of noise, for random
  * access. The index \p n can be used as a counter or varied for random access.
@@ -42,9 +41,7 @@
 static inline int32_t SAU_ranoise32b(uint32_t n) {
 	uint32_t s = n * SAU_FIBH32;
 	/*
-	 * 14 as offset number and other constants are currently simply copied.
-	 * Further testing remains to be done to check whether they are optimal
-	 * or best changed, for ranoise32b() compared to the older ranoise32().
+	 * 14 as offset number and other constants seem to work well here, too.
 	 */
 	s = (s | 1) * SAU_ROR32(s, s + 14);
 	s ^= (s >> 7) ^ (s >> 16); // improve worse lower bits with higher bits
