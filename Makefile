@@ -2,7 +2,7 @@
 CC=cc
 CFLAGS=-W -Wall -O3
 LFLAGS=-lm
-BIN=ranoise32 avalanche-test
+BIN=ranoise32 ranoise32b avalanche-test
 
 all: $(BIN)
 clean:
@@ -13,3 +13,6 @@ avalance-test: avalanche-test.c
 
 ranoise32: ranoise32.c
 	$(CC) -o ranoise32 $(CFLAGS) ranoise32.c
+
+ranoise32b: ranoise32b.c
+	$(CC) -o ranoise32b $(CFLAGS) ranoise32b.c

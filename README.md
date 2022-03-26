@@ -7,6 +7,7 @@ The basic idea of "ranoise" is to use a simple counter as state for random numbe
 
 See the article "[Random access noise: Avalanche effect through chaotic waveshaping](https://joelkp.frama.io/blog/ran-chaos-waveshape.html)" for more. Currently, the following versions are included:
  * ranoise32
+ * ranoise32b
 
 The C programs in this repository, which include a bit more than the bare algorithms (mainly a bit of text), are provided under the ISC license.
 
@@ -18,6 +19,17 @@ The bare functions
 int32_t ranoise32(uint32_t x) {
         x *= 2654435769UL;
         x *= (x >> ((x + 14) & 31)) | (x << (32-((x + 14) & 31)));
+        x ^= (x >> 7) ^ (x >> 16);
+        return x;
+}
+```
+
+### ranoise32b
+This is a slightly more complicated version which fully passes TestU01's medium-sized Crush tests when used with a plain increasing counter argument.
+```
+int32_t ranoise32b(uint32_t x) {
+        x *= 2654435769UL;
+        x = (x | 1) * (x >> ((x + 14) & 31)) | (x << (32-((x + 14) & 31)));
         x ^= (x >> 7) ^ (x >> 16);
         return x;
 }
