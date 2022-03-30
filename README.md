@@ -15,6 +15,7 @@ The bare functions
 ------------------
 
 ### ranoise32
+This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. Works well as long as changes to x between calls are small or have lower bits set.
 ```
 int32_t ranoise32(uint32_t x) {
         x *= 2654435769UL;
@@ -25,12 +26,13 @@ int32_t ranoise32(uint32_t x) {
 ```
 
 ### ranoise32b
-This is a slightly more complicated version which fully passes TestU01's medium-sized Crush tests when used with a plain increasing counter argument.
+This is a reworked version which passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests, when used with a plain increasing counter argument. Quality should also degrade more gracefully with suboptimal function argument patterns.
 ```
 int32_t ranoise32b(uint32_t x) {
         x *= 2654435769UL;
-        x = (x | 1) * (x >> ((x + 14) & 31)) | (x << (32-((x + 14) & 31)));
-        x ^= (x >> 7) ^ (x >> 16);
+        x ^= x >> 14;
+        x = (x | 1) * ((x >> ((x >> 27) & 31)) | (x << (32-((x >> 27) & 31))));
+        x ^= x >> 13;
         return x;
 }
 ```

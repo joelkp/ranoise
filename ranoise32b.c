@@ -27,6 +27,11 @@
 #define SAU_ROR32(x, r) \
 	((uint32_t)(x) >> ((r) & 31) | ((uint32_t)(x) << (32-((r) & 31))))
 
+/** Multiplicatively mix bits using varying right-rotation,
+    for 32-bit unsigned \p x value, \p r rotation, \p ro offset. */
+#define SAU_MUVAROR32(x, r, ro) \
+	(((uint32_t)(x) | ((1<<((ro) & 31))|1)) * SAU_ROR32((x), (r)+(ro)))
+
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
  * simple, number sequences into white noise. Returns zero for zero. This is an
@@ -40,11 +45,9 @@
  */
 static inline int32_t SAU_ranoise32b(uint32_t n) {
 	uint32_t s = n * SAU_FIBH32;
-	/*
-	 * 14 as offset number and other constants seem to work well here, too.
-	 */
-	s = (s | 1) * SAU_ROR32(s, s + 14);
-	s ^= (s >> 7) ^ (s >> 16); // improve worse lower bits with higher bits
+	s ^= s >> 14;
+	s = SAU_MUVAROR32(s, s >> 27, 0);
+	s ^= s >> 13;
 	return s;
 }
 
