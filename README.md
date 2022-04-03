@@ -9,14 +9,14 @@ See the article "[Random access noise: Avalanche effect through chaotic waveshap
  * ranoise32
  * ranoise32b
 
-There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](muvaror32.h). It's licensed under the public domain-equivalent 0BSD license for universal copying from without an attribution requirement (though credit is nice); the same applies to the code in this README.
+There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](muvaror32.h).
 
-Other C program files in this repository, which include a bit more than the bare algorithms (mainly a bit of text), are provided under the ISC license.
+The C code files in this repository are licensed under the public domain-equivalent 0BSD license, meaning they can be copied from _without_ an attribution requirement (though credit is nice). The same applies to the code in this README.
 
 The bare functions
 ------------------
 
-While uglier than using a macro or inline function for bitrotation, etc., here's everything-in-one-go function definitions.
+While uglier than using macros or inline functions for bitrotation, etc., here's everything-in-one-go function definitions.
 
 ### ranoise32
 This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. Works well as long as changes to x between calls are small or have lower bits set.
