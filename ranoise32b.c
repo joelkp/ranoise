@@ -15,27 +15,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #include <stdio.h>
-#include <stdint.h>
-
-#define SAU_FIBH32                2654435769UL // 32-bit Fibonacci hash number
-
-/** Rotate bits left, for 32-bit unsigned \p x, \p r positions. */
-#define SAU_ROL32(x, r) \
-	((uint32_t)(x) << ((r) & 31) | ((uint32_t)(x) >> (32-((r) & 31))))
-
-/** Rotate bits right, for 32-bit unsigned \p x, \p r positions. */
-#define SAU_ROR32(x, r) \
-	((uint32_t)(x) >> ((r) & 31) | ((uint32_t)(x) << (32-((r) & 31))))
-
-/** Multiplicatively mix bits using varying right-rotation,
-    for 32-bit unsigned \p x value, \p r rotation, \p ro offset. */
-#define SAU_MUVAROR32(x, r, ro) \
-	(((uint32_t)(x) | ((1<<((ro) & 31))|1)) * SAU_ROR32((x), (r)+(ro)))
+#include "muvaror32.h"
 
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
  * simple, number sequences into white noise. Returns zero for zero. This is an
- * improved version of SAU_ranoise32(), which passes more statistical tests and
+ * improved version of old ranoise32(), which passes more statistical tests and
  * with small overhead is more suitable for general non-cryptographic purposes.
  *
  * This function is mainly an alternative to using buffers of noise, for random
@@ -43,10 +28,10 @@
  *
  * \return pseudo-random number for index \p n
  */
-static inline int32_t SAU_ranoise32b(uint32_t n) {
-	uint32_t s = n * SAU_FIBH32;
+static inline int32_t ranoise32b(uint32_t n) {
+	uint32_t s = n * FIBH32;
 	s ^= s >> 14;
-	s = SAU_MUVAROR32(s, s >> 27, 0);
+	s = MUVAROR32(s, s >> 27, 0);
 	s ^= s >> 13;
 	return s;
 }
@@ -56,7 +41,7 @@ int main(int argc, char *argv[]) {
 	for (;;) {
 		/* chaos whaveshaper test */
 		uint32_t x = i++;
-		putw(SAU_ranoise32b(x), stdout);
+		putw(ranoise32b(x), stdout);
 	}
 	return 0;
 }

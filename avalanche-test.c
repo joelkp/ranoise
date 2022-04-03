@@ -15,18 +15,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #include <stdio.h>
-#include <stdint.h>
-
-#define FIBH32 2654435769UL // 32-bit Fibonacci hash number
-
-/** Rotate bits right, for 32-bit unsigned \p x, \p r positions. */
-#define ROR32(x, r) \
-	((uint32_t)(x) >> ((r)&31) | ((uint32_t)(x) << (32-((r)&31))))
-
-/** Multiplicatively mix bits using varying right-rotation,
-    for 32-bit unsigned \p x value, \p r rotation, \p ro offset. */
-#define MUVAROR32(x, r, ro) \
-	(((uint32_t)(x) | ((1<<((ro) & 31))|1)) * ROR32((x), (r)+(ro)))
+#include "muvaror32.h"
 
 /*
  * Plain ranoise32 generally does well, but it has some weaknesses to

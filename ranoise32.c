@@ -15,17 +15,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #include <stdio.h>
-#include <stdint.h>
-
-#define SAU_FIBH32                2654435769UL // 32-bit Fibonacci hash number
-
-/** Rotate bits left, for 32-bit unsigned \p x, \p r positions. */
-#define SAU_ROL32(x, r) \
-	((uint32_t)(x) << ((r) & 31) | ((uint32_t)(x) >> (32-((r) & 31))))
-
-/** Rotate bits right, for 32-bit unsigned \p x, \p r positions. */
-#define SAU_ROR32(x, r) \
-	((uint32_t)(x) >> ((r) & 31) | ((uint32_t)(x) << (32-((r) & 31))))
+#include "muvaror32.h"
 
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
@@ -42,15 +32,15 @@
  *
  * \return pseudo-random number for index \p n
  */
-static inline int32_t SAU_ranoise32(uint32_t n) {
-	uint32_t s = n * SAU_FIBH32;
+static inline int32_t ranoise32(uint32_t n) {
+	uint32_t s = n * FIBH32;
 	/*
 	 * 14 below appears a good offset number. For a high-quality result, it
 	 * may be best to use a number around 16 in 8-25 inclusive. Statistical
 	 * testing shows 5-27 as the maximal range beyond which Diehard Squeeze
 	 * fails. Subtle audio qualities vary with the number; 14 seems smooth.
 	 */
-	s *= SAU_ROR32(s, s + 14);
+	s *= ROR32(s, s + 14);
 	s ^= (s >> 7) ^ (s >> 16); // improve worse lower bits with higher bits
 	return s;
 }
@@ -60,7 +50,7 @@ int main(int argc, char *argv[]) {
 	for (;;) {
 		/* chaos whaveshaper test */
 		uint32_t x = i++;
-		putw(SAU_ranoise32(x), stdout);
+		putw(ranoise32(x), stdout);
 	}
 	return 0;
 }
