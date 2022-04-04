@@ -30,9 +30,9 @@ int32_t ranoise32(uint32_t x) {
 ```
 
 ### `ranoise32_old`
-This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. Works well as long as changes to x between calls are small or have lower bits set.
+This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. It works well as long as changes to x between calls are small or have lower bits set.
 
-Worth keeping for the distinctive smoothness of the output.
+It's worth keeping for the distinctive smoothness of the output.
 ```
 int32_t ranoise32_old(uint32_t x) {
         x *= 2654435769UL;
@@ -43,7 +43,7 @@ int32_t ranoise32_old(uint32_t x) {
 ```
 
 ### `ranoise32b`
-This is a reworked version which passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests, when used with a plain increasing counter argument. Quality should also degrade more gracefully with suboptimal function argument patterns.
+This is a reworked version which passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests (mainly four "Gap" tests), when used with a plain increasing counter argument.
 ```
 int32_t ranoise32b(uint32_t x) {
         x *= 2654435769UL;
@@ -64,7 +64,7 @@ make && ./ranoise32 | dieharder -a -g 200
 
 ```
 
-There is also a utility called `TestU01_stdin` which, if built and installed along with TestU01, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush):
+There is also a utility called `TestU01_stdin` (multiple versions can be found) which, if built and installed after TestU01 is, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush):
 
 ```
 make && ./ranoise32 | TestU01 -c
