@@ -2,7 +2,9 @@
 CC=cc
 CFLAGS=-W -Wall -O3 -Iinclude
 LFLAGS=-lm
-BIN=ranoise32 ranoise32b avalanche-test
+BIN=avalanche-test \
+    ranoise32 ranoise32b \
+    xorshift32
 
 all: $(BIN)
 clean:
@@ -16,3 +18,6 @@ ranoise32: ranoise32.c include/muvaror32.h include/testwrite.h
 
 ranoise32b: ranoise32b.c include/muvaror32.h include/testwrite.h
 	$(CC) -o ranoise32b $(CFLAGS) ranoise32b.c
+
+xorshift32: xorshift32.c include/testwrite.h
+	$(CC) -o xorshift32 $(CFLAGS) xorshift32.c

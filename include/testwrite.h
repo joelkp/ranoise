@@ -14,6 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #pragma once
+#include <stdint.h>
 #include <stdio.h>
 
 /* to be called in an infinite loop */
