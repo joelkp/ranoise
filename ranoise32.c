@@ -31,6 +31,21 @@ static inline int32_t ranoise32(uint32_t n) {
 	return s;
 }
 
+/**
+ * Random access noise, minimal lower-quality version. Chaotic waveshaper which
+ * turns sawtooth-ish number sequences into white noise. Returns zero for zero.
+ *
+ * This "next" function returns a new value each time, corresponding to a state
+ * \p pos, which is increased. It may be initialized with any seed (0 is fine).
+ *
+ * \return pseudo-random number for state \p pos
+ */
+static inline int32_t ranoise32_next(uint32_t *restrict pos) {
+	uint32_t s = *pos += FIBH32;
+	s = MUVAROR32(s, s >> 27, 0);
+	return s;
+}
+
 int main(int argc, char *argv[]) {
 	int i = 0;
 	for (;;) {

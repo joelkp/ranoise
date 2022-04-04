@@ -3,10 +3,12 @@ Random access noise algorithms & test programs
 
 This repository contains a copy of my PRNG algorithms and related things. It includes test programs, both my own tests and for generating a stream of pseudo-random `int` data sent to `stdout` for test purposes.
 
-The basic idea of the "ranoise" functions is to use a simple counter as state for random number generation, to be changed with some positive or negative frequency; chaotic waveshaping transforms the current counter value to the pseudo-random number it indexes. A stream of noise is produced by looping through the use of a ranoise function, calling it with the different counter values. Random access within a noise stream is also allowed, by simply changing the argument of the function. Given the simplicity of the function, it's a good alternative to storing and using arrays of random data, and the randomness is not too shabby either.
+The basic idea of the "ranoise" functions is to use a simple counter as state for random number generation, to be changed with some positive or negative frequency; chaotic waveshaping transforms the current counter value to the pseudo-random number it indexes. A stream of noise is produced by looping through the use of a ranoise function, calling it with the different counter values. Random access within a noise stream is also allowed by simply using different arguments of the function, just like array indices. These functions can be a good alternative to storing and using arrays of random data.
+
+For each "ranoise" function, a function named with a `_next`-suffix is also provided; it behaves like a normal PRNG function for getting a next value, updating a passed state on each call. The state should be initialized before the first call to some value (any seed value is fine, including 0).
 
 See the article "[Random access noise: Avalanche effect through chaotic waveshaping](https://joelkp.frama.io/blog/ran-chaos-waveshape.html)" for more. Currently, programs for the following versions are included:
- * `ranoise32` -- Minimal lower-quality version (for use e.g. in place of LCGs)
+ * `ranoise32` -- Minimal lower-quality version (compares well to 32-bit LCGs)
  * `ranoise32_old` -- Older, more elaborate medium-quality version
  * `ranoise32b` -- Higher-quality version (compares well to SplitMix32)
 
@@ -17,7 +19,7 @@ The C code files in this repository are licensed under the public domain-equival
 The bare functions
 ------------------
 
-While uglier than using macros or inline functions for bitrotation, etc., here's everything-in-one-go function definitions.
+While uglier than using the macros or inline functions for bitrotation, etc., here's everything-in-one-go function definitions.
 
 ### `ranoise32`
 Stripped-down version of `ranoise32b`, which fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer.

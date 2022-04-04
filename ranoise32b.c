@@ -19,7 +19,7 @@
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
  * simple, number sequences into white noise. Returns zero for zero. This is an
- * improved version of old ranoise32(), which passes more statistical tests and
+ * improved version of ranoise32_old(), which passes more statistical tests and
  * with small overhead is more suitable for general non-cryptographic purposes.
  *
  * This function is mainly an alternative to using buffers of noise, for random
@@ -29,6 +29,25 @@
  */
 static inline int32_t ranoise32b(uint32_t n) {
 	uint32_t s = n * FIBH32;
+	s ^= s >> 14;
+	s = MUVAROR32(s, s >> 27, 0);
+	s ^= s >> 13;
+	return s;
+}
+
+/**
+ * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
+ * simple, number sequences into white noise. Returns zero for zero. This is an
+ * improved version of ranoise32_old(), which passes more statistical tests and
+ * with small overhead is more suitable for general non-cryptographic purposes.
+ *
+ * This "next" function returns a new value each time, corresponding to a state
+ * \p pos, which is increased. It may be initialized with any seed (0 is fine).
+ *
+ * \return pseudo-random number for state \p pos
+ */
+static inline int32_t ranoise32b_next(uint32_t *restrict pos) {
+	uint32_t s = *pos += FIBH32;
 	s ^= s >> 14;
 	s = MUVAROR32(s, s >> 27, 0);
 	s ^= s >> 13;
