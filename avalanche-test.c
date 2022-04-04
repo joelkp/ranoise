@@ -17,12 +17,12 @@
 #include "muvaror32.h"
 
 /*
- * Plain ranoise32 generally does well, but it has some weaknesses to
+ * Older ranoise32 generally does well, but it has some weaknesses to
  * the avalanche effect, such as numbers exactly a large power of two
  * producing zero output. In the simple test below, a start of 1 will
  * give a much better result than a start of 0.
  */
-int32_t ranoise32(uint32_t x) {
+int32_t ranoise32_old(uint32_t x) {
 	x *= FIBH32;
 	x *= ROR32(x, x + 14);
 	x ^= (x >> 7) ^ (x >> 16);
