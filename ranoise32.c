@@ -1,4 +1,4 @@
-/* ranoise32 test program
+/* ranoise32 -- minimal version -- test program
  * Copyright (c) 2022 Joel K. Pettersson
  * <joelkpettersson@gmail.com>.
  *
@@ -17,14 +17,8 @@
 #include "testwrite.h"
 
 /**
- * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
- * simple, number sequences into something similar to white noise. Returns zero
- * for zero. The frequency spectrum when used with a counter is flat. The third
- * part is necessary in order to make the resulting pseudo-randomness passable,
- * for more general non-cryptographic purposes. (Without it there is still e.g.
- * fairness if used for dice throws and properties of sums of numbers are fine,
- * but lower bits become so much worse than higher ones that the bits and bytes
- * extracted from the output, if used as sequences of such, give poor results.)
+ * Random access noise, minimal lower-quality version. Chaotic waveshaper which
+ * turns sawtooth-ish number sequences into white noise. Returns zero for zero.
  *
  * This function is mainly an alternative to using buffers of noise, for random
  * access. The index \p n can be used as a counter or varied for random access.
@@ -33,14 +27,7 @@
  */
 static inline int32_t ranoise32(uint32_t n) {
 	uint32_t s = n * FIBH32;
-	/*
-	 * 14 below appears a good offset number. For a high-quality result, it
-	 * may be best to use a number around 16 in 8-25 inclusive. Statistical
-	 * testing shows 5-27 as the maximal range beyond which Diehard Squeeze
-	 * fails. Subtle audio qualities vary with the number; 14 seems smooth.
-	 */
-	s *= ROR32(s, s + 14);
-	s ^= (s >> 7) ^ (s >> 16); // improve worse lower bits with higher bits
+	s = MUVAROR32(s, s >> 27, 0);
 	return s;
 }
 

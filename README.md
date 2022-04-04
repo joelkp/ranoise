@@ -6,8 +6,9 @@ This repository contains a copy of my PRNG algorithms and related things. It inc
 The basic idea of the "ranoise" functions is to use a simple counter as state for random number generation, to be changed with some positive or negative frequency; chaotic waveshaping transforms the current counter value to the pseudo-random number it indexes. A stream of noise is produced by looping through the use of a ranoise function, calling it with the different counter values. Random access within a noise stream is also allowed, by simply changing the argument of the function. Given the simplicity of the function, it's a good alternative to storing and using arrays of random data, and the randomness is not too shabby either.
 
 See the article "[Random access noise: Avalanche effect through chaotic waveshaping](https://joelkp.frama.io/blog/ran-chaos-waveshape.html)" for more. Currently, programs for the following versions are included:
- * ranoise32
- * ranoise32b
+ * `ranoise32` -- Minimal lower-quality version (for use e.g. in place of LCGs)
+ * `ranoise32_old` -- Older, more elaborate medium-quality version
+ * `ranoise32b` -- Higher-quality version (compares well to SplitMix32)
 
 There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](include/muvaror32.h).
 
@@ -18,10 +19,22 @@ The bare functions
 
 While uglier than using macros or inline functions for bitrotation, etc., here's everything-in-one-go function definitions.
 
-### ranoise32
-This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. Works well as long as changes to x between calls are small or have lower bits set.
+### `ranoise32`
+Stripped-down version of `ranoise32b`, which fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer.
 ```
 int32_t ranoise32(uint32_t x) {
+        x *= 2654435769UL;
+        x = (x | 1) * ((x >> ((x >> 27) & 31)) | (x << ((32-(x >> 27)) & 31)));
+        return x;
+}
+```
+
+### `ranoise32_old`
+This is an earlier version with some quirks and flaws, failing 3 of TestU01's medium-sized Crush tests. Works well as long as changes to x between calls are small or have lower bits set.
+
+Worth keeping for the distinctive smoothness of the output.
+```
+int32_t ranoise32_old(uint32_t x) {
         x *= 2654435769UL;
         x *= (x >> ((x + 14) & 31)) | (x << ((32-(x + 14)) & 31));
         x ^= (x >> 7) ^ (x >> 16);
@@ -29,7 +42,7 @@ int32_t ranoise32(uint32_t x) {
 }
 ```
 
-### ranoise32b
+### `ranoise32b`
 This is a reworked version which passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests, when used with a plain increasing counter argument. Quality should also degrade more gracefully with suboptimal function argument patterns.
 ```
 int32_t ranoise32b(uint32_t x) {
@@ -41,7 +54,7 @@ int32_t ranoise32b(uint32_t x) {
 }
 ```
 
-Running dieharder tests
+Running statistical tests
 -----------------------
 
 If you install [dieharder](https://webhome.phy.duke.edu/~rgb/General/dieharder.php), then you can run a program named after a function from this repository through it as follows:
@@ -51,4 +64,9 @@ make && ./ranoise32 | dieharder -a -g 200
 
 ```
 
-That one-liner is convenient to have at hand when tweaking a program to vary the value of the counter, or other things.
+There is also a utility called `TestU01_stdin` which, if built and installed along with TestU01, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush):
+
+```
+make && ./ranoise32 | TestU01 -c
+
+```
