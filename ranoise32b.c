@@ -13,8 +13,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <stdio.h>
 #include "muvaror32.h"
+#include "testwrite.h"
 
 /**
  * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 	for (;;) {
 		/* chaos whaveshaper test */
 		uint32_t x = i++;
-		putw(ranoise32b(x), stdout);
+		add_output(ranoise32b(x));
 	}
 	return 0;
 }

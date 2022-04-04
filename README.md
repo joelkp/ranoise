@@ -9,7 +9,7 @@ See the article "[Random access noise: Avalanche effect through chaotic waveshap
  * ranoise32
  * ranoise32b
 
-There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](muvaror32.h).
+There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](include/muvaror32.h).
 
 The C code files in this repository are licensed under the public domain-equivalent 0BSD license, meaning they can be copied from _without_ an attribution requirement (though credit is nice). The same applies to the code in this README.
 
