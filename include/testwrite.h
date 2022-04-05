@@ -19,17 +19,6 @@
 
 /* to be called in an infinite loop */
 static inline void add_output(int32_t x) {
-#if 1
-	/*
-	 * This can be the fastest option on Linux with glibc,
-	 * because there's already a buffer used under the hood.
-	 */
-	putw(x, stdout);
-#else
-	/*
-	 * This is the portable option, to be used if putw() is
-	 * missing, slow, or sizeof(int) != sizeof(int32_t).
-	 */
 	static size_t outbuf_i = 0;
 	static int32_t outbuf[BUFSIZ];
 	outbuf[outbuf_i++] = x;
@@ -37,5 +26,4 @@ static inline void add_output(int32_t x) {
 		fwrite(outbuf, sizeof(int32_t), outbuf_i, stdout);
 		outbuf_i = 0;
 	}
-#endif
 }
