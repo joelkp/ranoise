@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-/* to be called in an infinite loop */
+/* for 32-bit value; to be called in an infinite loop */
 static inline void add_output(int32_t x) {
 	static size_t outbuf_i = 0;
 	static int32_t outbuf[BUFSIZ];
@@ -26,4 +26,20 @@ static inline void add_output(int32_t x) {
 		fwrite(outbuf, sizeof(int32_t), outbuf_i, stdout);
 		outbuf_i = 0;
 	}
+}
+
+/* wrapper for full 64-bit value */
+static inline void add_output2x(int64_t x) {
+	add_output(x);
+	add_output(x >> 32);
+}
+
+/* wrapper for upper half of 64-bit value */
+static inline void add_output64u(int64_t x) {
+	add_output(x >> 32);
+}
+
+/* wrapper for lower half of 64-bit value */
+static inline void add_output64l(int64_t x) {
+	add_output(x);
 }
