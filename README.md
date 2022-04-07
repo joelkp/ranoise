@@ -63,7 +63,7 @@ int32_t ranoise32b(uint32_t x) {
 ```
 
 Running statistical tests
------------------------
+-------------------------
 
 If you install [`dieharder`](https://webhome.phy.duke.edu/~rgb/General/dieharder.php), then you can run a program named after a function from this repository through it as follows:
 
@@ -78,3 +78,10 @@ There is also a utility called [`TestU01_stdin`](https://framagit.org/-/snippets
 make && ./ranoise32 | TestU01_stdin -s
 
 ```
+
+Current results
+---------------
+
+Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/).
+
+The files for TestU01 tests named `*-rev.txt` use the `-r` option for `TestU01_stdin` to reverse the order of bits within each 32-bit word. When this results in more failures, it points towards randomness in the lowest bits being of worse quality than that in higher bits. (TestU01 is less sensitive to flaws in the lowest bits.)

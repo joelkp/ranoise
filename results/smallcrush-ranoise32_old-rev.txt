@@ -1,0 +1,14 @@
+$ ./ranoise32_old | TestU01_stdin -sr                                          
+
+========= Summary results of SmallCrush =========
+
+ Version:          TestU01 1.2.3
+ Generator:        32-bit stdin
+ Number of statistics:  15
+ Total CPU time:   00:00:09.08
+
+ All tests were passed
+
+
+
+Total processed 32-bit samples = 226964186

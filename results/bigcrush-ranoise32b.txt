@@ -1,0 +1,25 @@
+$ ./ranoise32b | TestU01_stdin -b                                              
+
+========= Summary results of BigCrush =========
+
+ Version:          TestU01 1.2.3
+ Generator:        32-bit stdin
+ Number of statistics:  160
+ Total CPU time:   04:31:56.14
+ The following tests gave p-values outside [0.001, 0.9990]:
+ (eps  means a value < 1.0e-300):
+ (eps1 means a value < 1.0e-15):
+
+       Test                          p-value
+ ----------------------------------------------
+ 34  Gap, r = 0                     5.9e-15
+ 35  Gap, r = 25                      eps  
+ 36  Gap, r = 0                       eps  
+ 37  Gap, r = 20                      eps  
+ 65  SumCollector                    2.8e-4
+ ----------------------------------------------
+ All other tests were passed
+
+
+
+Total processed 32-bit samples = 357094400194
