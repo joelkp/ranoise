@@ -72,7 +72,7 @@ make && ./ranoise32 | dieharder -a -g 200
 
 ```
 
-There is also a utility called `TestU01_stdin` (multiple versions of which can be found) which, if built and installed after TestU01 is, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush):
+There is also a utility called [`TestU01_stdin`](https://framagit.org/-/snippets/6556) (my 2022 version with added options for bitreversal and verbosity) which, if built and installed after TestU01 is, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush, `-l` for LinearComp):
 
 ```
 make && ./ranoise32 | TestU01_stdin -s
