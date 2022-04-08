@@ -69,14 +69,12 @@ If you install [`dieharder`](https://webhome.phy.duke.edu/~rgb/General/dieharder
 
 ```
 make && ./ranoise32 | dieharder -a -g 200
-
 ```
 
 There is also a utility called [`TestU01_stdin`](https://framagit.org/-/snippets/6556) (my 2022 version with added options for bitreversal and verbosity) which, if built and installed after TestU01 is, allows similar testing with TestU01 (`-s` for SmallCrush, `-c` for Crush, `-b` for BigCrush, `-l` for LinearComp):
 
 ```
 make && ./ranoise32 | TestU01_stdin -s
-
 ```
 
 Or to write everything from a verbose TestU01 run (more than just the summary at the end), plus a final count of 32-bit samples generated, to a file:
@@ -88,6 +86,6 @@ make && ./ranoise32 | TestU01_stdin -sv 3>&1 2>&3 | tee file.txt
 Current results
 ---------------
 
-Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/).
+Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/). Full TestU01 results (`smallcrush-*`, `crush-*`, `bigcrush-*`) are rather verbose, but the short summary can be found at the end of each file.
 
 The files for TestU01 tests named `*-rev.txt` use the `-r` option for `TestU01_stdin` to reverse the order of bits within each 32-bit word. When this results in more failures, it points towards randomness in the lowest bits being of worse quality than that in higher bits. (TestU01 is less sensitive to flaws in the lowest bits.)
