@@ -1,11 +1,3228 @@
-$ ./ranoise32b | TestU01_stdin -c                                              
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                 Starting Crush
+                 Version: TestU01 1.2.3
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+***********************************************************
+Test smarsa_SerialOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N =  1,  n = 500000000,  r =  0,   d = 4096,   t =  2,
+       Sparse =  FALSE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =           16777216
+       Expected number per cell =   29.802322
+       Hashing =  FALSE
+
+   For Delta > -1, we use the ChiSquare approximation
+   Correction factor of the ChiSquare: 
+       Delta =     1,    Mu =     0.01677312,    Sigma =          1
+
+-----------------------------------------------
+Test Results for Delta =   1.0000
+
+Number of degrees of freedom          : 16773120
+Value of the statistic                : 1.68e+7
+p-value of test                       :    0.70
+
+
+-----------------------------------------------
+CPU time used                    :  00:01:50.26
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_SerialOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N =  1,  n = 300000000,  r =  0,   d =   64,   t =  4,
+       Sparse =  FALSE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =           16777216
+       Expected number per cell =   17.881393
+       Hashing =  FALSE
+
+   For Delta > -1, we use the ChiSquare approximation
+   Correction factor of the ChiSquare: 
+       Delta =     1,    Mu =    0.027525119,    Sigma =          1
+
+-----------------------------------------------
+Test Results for Delta =   1.0000
+
+Number of degrees of freedom          : 16515072
+Value of the statistic                : 1.65e+7
+p-value of test                       :    0.76
+
+
+-----------------------------------------------
+CPU time used                    :  00:01:13.74
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r =  0,   d = 1048576,   t =  2,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      470
+p-value of test                       :    0.24
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278230
+  j =  1                              :         99999060
+  j =  2                              :              470
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:19.42
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r = 10,   d = 1048576,   t =  2,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      454
+p-value of test                       :    0.50
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278214
+  j =  1                              :         99999092
+  j =  2                              :              454
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:18.33
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r =  0,   d = 1024,   t =  4,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      425
+p-value of test                       :    0.92
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278185
+  j =  1                              :         99999150
+  j =  2                              :              425
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:36.06
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r = 20,   d = 1024,   t =  4,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      444
+p-value of test                       :    0.68
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278204
+  j =  1                              :         99999112
+  j =  2                              :              444
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:37.98
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r =  0,   d =   32,   t =  8,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      458
+p-value of test                       :    0.45
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278218
+  j =  1                              :         99999084
+  j =  2                              :              458
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:32.08
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r = 25,   d =   32,   t =  8,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.75
+Observed number of collisions         :      457
+p-value of test                       :    0.46
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278217
+  j =  1                              :         99999086
+  j =  2                              :              457
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:30.11
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r =  0,   d =    4,   t = 20,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.74
+Observed number of collisions         :      450
+p-value of test                       :    0.58
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278210
+  j =  1                              :         99999100
+  j =  2                              :              450
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:19.89
+
+Generator state:
+
+
+
+
+***********************************************************
+Test smarsa_CollisionOver calling smultin_MultinomialOver
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_MultinomialOver test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r = 28,   d =    4,   t = 20,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellSerial
+       Number of cells = d^t =      1099511627776
+       Expected number per cell =  1 /  109951.16
+       EColl = n^2 / (2k) =  45.47473509
+       Hashing =   TRUE
+
+       Collision test
+
+       CollisionOver:   density = n / k =  1 /  109951.16
+       Expected number of collisions = Mu =      45.47
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      454.74
+Observed number of collisions         :      481
+p-value of test                       :    0.11
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :   10995016278241
+  j =  1                              :         99999038
+  j =  2                              :              481
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:01:14.89
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  5,  n = 20000000,  r =  0,    d = 2147483648,    t = 2,    p = 1
+
+
+      Number of cells = d^t = 4611686018427387904
+      Lambda = Poisson mean =     433.6809
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :    2168.40
+Total observed number                 :    2147
+p-value of test                       :    0.67
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:35.50
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  5,  n = 20000000,  r =  0,    d = 2097152,    t = 3,    p = 1
+
+
+      Number of cells = d^t = 9223372036854775808
+      Lambda = Poisson mean =     216.8404
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :    1084.20
+Total observed number                 :    1115
+p-value of test                       :    0.18
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:35.12
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  5,  n = 20000000,  r =  0,    d = 65536,    t = 4,    p = 1
+
+
+      Number of cells = d^t = 18446744073709551616
+      Lambda = Poisson mean =     108.4202
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :     542.10
+Total observed number                 :     525
+p-value of test                       :    0.76
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:36.62
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  3,  n = 20000000,  r =  0,    d = 512,    t = 7,    p = 1
+
+
+      Number of cells = d^t = 9223372036854775808
+      Lambda = Poisson mean =     216.8404
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :     650.52
+Total observed number                 :     663
+p-value of test                       :    0.32
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:24.00
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  3,  n = 20000000,  r =  7,    d = 512,    t = 7,    p = 1
+
+
+      Number of cells = d^t = 9223372036854775808
+      Lambda = Poisson mean =     216.8404
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :     650.52
+Total observed number                 :     642
+p-value of test                       :    0.62
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:26.47
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  3,  n = 20000000,  r = 14,    d = 256,    t = 8,    p = 1
+
+
+      Number of cells = d^t = 18446744073709551616
+      Lambda = Poisson mean =     108.4202
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :     325.26
+Total observed number                 :     321
+p-value of test                       :    0.58
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:33.24
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_BirthdaySpacings test:
+-----------------------------------------------
+   N =  3,  n = 20000000,  r = 22,    d = 256,    t = 8,    p = 1
+
+
+      Number of cells = d^t = 18446744073709551616
+      Lambda = Poisson mean =     108.4202
+
+
+----------------------------------------------------
+Total expected number = N*Lambda      :     325.26
+Total observed number                 :     319
+p-value of test                       :    0.62
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:27.76
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+snpair_ClosePairs test:
+-----------------------------------------------
+   N = 10,  n = 2000000,  r =  0,  t = 2,  p = 0,  m = 30,  Torus =  TRUE
+
+
+---------------------------------------
+Test based on the 2 nearest points (NP):
+
+Stat. AD on the N values (NP)         :    0.93
+p-value of test                       :    0.39
+
+
+A2 test based on the spacings between the
+   successive jump times of process Y_n(t):
+
+A2 test on the values of A2 (m-NP)    :    0.27
+p-value of test                       :    0.96
+
+Test on the Nm values of W_{n,i}(mNP1):    0.47
+p-value of test                       :    0.77
+
+Test on the jump times of Y
+   (superposition of Yn):
+
+Expected number of jumps of Y = mN    :     300
+Number of jumps of Y                  :     308
+p-value of test                       :    0.33
+
+Stat. AD (mNP2)                       :    0.58
+p-value of test                       :    0.67
+
+-----------------------------------------------
+CPU time used                    :  00:00:15.16
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+snpair_ClosePairs test:
+-----------------------------------------------
+   N = 10,  n = 2000000,  r =  0,  t = 3,  p = 0,  m = 30,  Torus =  TRUE
+
+
+---------------------------------------
+Test based on the 2 nearest points (NP):
+
+Stat. AD on the N values (NP)         :    0.46
+p-value of test                       :    0.79
+
+
+A2 test based on the spacings between the
+   successive jump times of process Y_n(t):
+
+A2 test on the values of A2 (m-NP)    :    2.00
+p-value of test                       :    0.09
+
+Test on the Nm values of W_{n,i}(mNP1):    0.58
+p-value of test                       :    0.67
+
+Test on the jump times of Y
+   (superposition of Yn):
+
+Expected number of jumps of Y = mN    :     300
+Number of jumps of Y                  :     292
+p-value of test                       :    0.66
+
+Stat. AD (mNP2)                       :    1.03
+p-value of test                       :    0.34
+
+Stat. AD after spacings (mNP2-S)      :    0.87
+p-value of test                       :    0.43
+
+-----------------------------------------------
+CPU time used                    :  00:00:19.56
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+snpair_ClosePairs test:
+-----------------------------------------------
+   N =  5,  n = 2000000,  r =  0,  t = 7,  p = 0,  m = 30,  Torus =  TRUE
+
+
+---------------------------------------
+Test based on the 2 nearest points (NP):
+
+Stat. AD on the N values (NP)         :    2.28
+p-value of test                       :    0.07
+
+
+A2 test based on the spacings between the
+   successive jump times of process Y_n(t):
+
+A2 test on the values of A2 (m-NP)    :    0.90
+p-value of test                       :    0.41
+
+Test on the Nm values of W_{n,i}(mNP1):    0.24
+p-value of test                       :    0.97
+
+Test on the jump times of Y
+   (superposition of Yn):
+
+Expected number of jumps of Y = mN    :     150
+Number of jumps of Y                  :     137
+p-value of test                       :    0.85
+
+Stat. AD (mNP2)                       :    1.02
+p-value of test                       :    0.35
+
+Stat. AD after spacings (mNP2-S)      :    0.93
+p-value of test                       :    0.39
+
+-----------------------------------------------
+CPU time used                    :  00:00:33.57
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+snpair_ClosePairsBitMatch test:
+-----------------------------------------------
+   N =  4,  n = 4000000,  r =  0,  t = 2
+
+
+-----------------------------------------------
+Max of all bit distances              :   22.00
+p-value of test                       :    0.37
+
+-----------------------------------------------
+CPU time used                    :  00:00:13.78
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+snpair_ClosePairsBitMatch test:
+-----------------------------------------------
+   N =  2,  n = 4000000,  r =  0,  t = 4
+
+
+-----------------------------------------------
+Max of all bit distances              :   10.00
+p-value of test                       :    0.60
+
+-----------------------------------------------
+CPU time used                    :  00:00:11.90
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_SimpPoker test:
+-----------------------------------------------
+   N =  1,  n = 40000000,  r =  0,   d =   16,   k =   16
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   12
+Chi-square statistic                  :   14.77
+p-value of test                       :    0.25
+
+-----------------------------------------------
+CPU time used                    :  00:00:12.00
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_SimpPoker test:
+-----------------------------------------------
+   N =  1,  n = 40000000,  r = 26,   d =   16,   k =   16
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   12
+Chi-square statistic                  :    4.64
+p-value of test                       :    0.97
+
+-----------------------------------------------
+CPU time used                    :  00:00:15.65
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_SimpPoker test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   d =   64,   k =   64
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   23
+Chi-square statistic                  :   15.44
+p-value of test                       :    0.88
+
+-----------------------------------------------
+CPU time used                    :  00:00:11.50
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_SimpPoker test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r = 24,   d =   64,   k =   64
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   23
+Chi-square statistic                  :   26.77
+p-value of test                       :    0.27
+
+-----------------------------------------------
+CPU time used                    :  00:00:14.95
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_CouponCollector test:
+-----------------------------------------------
+   N =  1,  n = 40000000,  r =  0,   d =    4
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   51
+Chi-square statistic                  :   48.26
+p-value of test                       :    0.58
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.29
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_CouponCollector test:
+-----------------------------------------------
+   N =  1,  n = 40000000,  r = 28,   d =    4
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   51
+Chi-square statistic                  :   55.74
+p-value of test                       :    0.30
+
+-----------------------------------------------
+CPU time used                    :  00:00:08.08
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_CouponCollector test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   d =   16
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   29.67
+p-value of test                       :    0.97
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.79
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_CouponCollector test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r = 26,   d =   16
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   33.06
+p-value of test                       :    0.92
+
+-----------------------------------------------
+CPU time used                    :  00:00:10.36
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Gap test:
+-----------------------------------------------
+   N =  1,  n = 100000000,  r =  0,   Alpha =        0,   Beta  =    0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :  106
+Chi-square statistic                  :  107.94
+p-value of test                       :    0.43
+
+-----------------------------------------------
+CPU time used                    :  00:00:08.75
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Gap test:
+-----------------------------------------------
+   N =  1,  n = 100000000,  r = 27,   Alpha =        0,   Beta  =    0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :  106
+Chi-square statistic                  :  109.12
+p-value of test                       :    0.40
+
+-----------------------------------------------
+CPU time used                    :  00:00:12.31
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Gap test:
+-----------------------------------------------
+   N =  1,  n = 5000000,  r =  0,   Alpha =        0,   Beta  = 0.00390625
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 1936
+Chi-square statistic                  : 2006.68
+p-value of test                       :    0.13
+
+-----------------------------------------------
+CPU time used                    :  00:00:10.20
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Gap test:
+-----------------------------------------------
+   N =  1,  n = 5000000,  r = 22,   Alpha =        0,   Beta  = 0.00390625
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 1936
+Chi-square statistic                  : 1960.48
+p-value of test                       :    0.34
+
+-----------------------------------------------
+CPU time used                    :  00:00:15.88
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Run test:
+-----------------------------------------------
+   N =  1,  n = 500000000,  r =  0,   Up =  TRUE
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    6
+Chi-square statistic                  :    6.93
+p-value of test                       :    0.33
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.49
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_Run test:
+-----------------------------------------------
+   N =  1,  n = 500000000,  r = 15,   Up = FALSE
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    6
+Chi-square statistic                  :    6.33
+p-value of test                       :    0.39
+
+-----------------------------------------------
+CPU time used                    :  00:00:09.59
+
+Generator state:
+
+
+
+
+***********************************************************
+Test sknuth_Permutation calling smultin_Multinomial
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_Multinomial test:
+-----------------------------------------------
+   N =  1,  n = 50000000,  r =  0,   t = 10,
+       Sparse =  FALSE
+
+       GenerCell = smultin_GenerCellPermut
+       Number of cells = t! =            3628800
+       Expected number per cell =    13.77866
+       Hashing =  FALSE
+
+   For Delta > -1, we use the ChiSquare approximation
+   Correction factor of the ChiSquare: 
+       Delta =     1,    Mu =     0.03628799,    Sigma =          1
+
+-----------------------------------------------
+Test Results for Delta =   1.0000
+
+Number of degrees of freedom          : 3628799
+Value of the statistic                : 3.63e+6
+p-value of test                       :    0.01
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:22.10
+
+Generator state:
+
+
+
+
+***********************************************************
+Test sknuth_Permutation calling smultin_Multinomial
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_Multinomial test:
+-----------------------------------------------
+   N =  1,  n = 50000000,  r = 15,   t = 10,
+       Sparse =  FALSE
+
+       GenerCell = smultin_GenerCellPermut
+       Number of cells = t! =            3628800
+       Expected number per cell =    13.77866
+       Hashing =  FALSE
+
+   For Delta > -1, we use the ChiSquare approximation
+   Correction factor of the ChiSquare: 
+       Delta =     1,    Mu =     0.03628799,    Sigma =          1
+
+-----------------------------------------------
+Test Results for Delta =   1.0000
+
+Number of degrees of freedom          : 3628799
+Value of the statistic                : 3.63e+6
+p-value of test                       :    0.15
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:23.75
+
+Generator state:
+
+
+
+
+***********************************************************
+Test sknuth_CollisionPermut calling smultin_Multinomial
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_Multinomial test:
+-----------------------------------------------
+   N =  5,  n = 10000000,  r =  0,   t = 13,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellPermut
+       Number of cells = t! =         6227020800
+       Expected number per cell =  1 /  622.70208
+       EColl = n^2 / (2k) =  8029.521918
+       Hashing =   TRUE
+
+       Collision test,    Mu =      8025.2245,    Sigma =    89.5098
+
+-----------------------------------------------
+Test Results for Collisions
+
+For the total number of collisions, we use
+      the Poisson approximation:
+Expected number of collisions = N*Mu  :    40126.12
+Observed number of collisions         :    40083
+p-value of test                       :    0.58
+
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :      31085144083
+  j =  1                              :         49919856
+  j =  2                              :            40039
+  j =  3                              :               22
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:00:42.67
+
+Generator state:
+
+
+
+
+***********************************************************
+Test sknuth_CollisionPermut calling smultin_Multinomial
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smultin_Multinomial test:
+-----------------------------------------------
+   N =  5,  n = 10000000,  r = 15,   t = 13,
+       Sparse =   TRUE
+
+       GenerCell = smultin_GenerCellPermut
+       Number of cells = t! =         6227020800
+       Expected number per cell =  1 /  622.70208
+       EColl = n^2 / (2k) =  8029.521918
+       Hashing =   TRUE
+
+       Collision test,    Mu =      8025.2245,    Sigma =    89.5098
+
+-----------------------------------------------
+Test Results for Collisions
+
+For the total number of collisions, we use
+      the Poisson approximation:
+Expected number of collisions = N*Mu  :    40126.12
+Observed number of collisions         :    40359
+p-value of test                       :    0.12
+
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :      31085144359
+  j =  1                              :         49919303
+  j =  2                              :            40317
+  j =  3                              :               21
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:00:46.05
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_MaxOft test:
+-----------------------------------------------
+   N = 10,  n = 10000000,  r =  0,   d = 100000,   t =  5
+
+      Number of categories = 100000
+      Expected number per category  = 100.00
+
+
+-----------------------------------------------
+Test results for chi2 with 99999 degrees of freedom:
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.26
+p-value of test                       :    0.22
+
+Kolmogorov-Smirnov- statistic = D-    :    0.11
+p-value of test                       :    0.71
+
+Anderson-Darling statistic = A2       :    0.78
+p-value of test                       :    0.49
+
+Test on the sum of all N observations
+Number of degrees of freedom          : 999990
+Chi-square statistic                  : 1.00e+6
+p-value of test                       :    0.43
+
+
+-----------------------------------------------
+Test results for Anderson-Darling:
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.33
+p-value of test                       :    0.09
+
+Kolmogorov-Smirnov- statistic = D-    :   0.076
+p-value of test                       :    0.85
+
+Anderson-Darling statistic = A2       :    1.70
+p-value of test                       :    0.14
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:38.36
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_MaxOft test:
+-----------------------------------------------
+   N =  5,  n = 10000000,  r =  0,   d = 100000,   t = 10
+
+      Number of categories = 100000
+      Expected number per category  = 100.00
+
+
+-----------------------------------------------
+Test results for chi2 with 99999 degrees of freedom:
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.18
+p-value of test                       :    0.66
+
+Kolmogorov-Smirnov- statistic = D-    :    0.19
+p-value of test                       :    0.61
+
+Anderson-Darling statistic = A2       :    0.24
+p-value of test                       :    0.97
+
+Test on the sum of all N observations
+Number of degrees of freedom          : 499995
+Chi-square statistic                  : 5.00e+5
+p-value of test                       :    0.51
+
+
+-----------------------------------------------
+Test results for Anderson-Darling:
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.37
+p-value of test                       :    0.21
+
+Kolmogorov-Smirnov- statistic = D-    :    0.20
+p-value of test                       :    0.58
+
+Anderson-Darling statistic = A2       :    0.70
+p-value of test                       :    0.55
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:21.63
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_MaxOft test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   d = 100000,   t = 20
+
+      Number of categories = 100000
+      Expected number per category  = 100.00
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 99999
+Chi-square statistic                  :99602.72
+p-value of test                       :    0.81
+
+
+-----------------------------------------------
+Anderson-Darling statistic            :    0.80
+p-value of test                       :    0.20
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:05.43
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sknuth_MaxOft test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   d = 100000,   t = 30
+
+      Number of categories = 100000
+      Expected number per category  = 100.00
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 99999
+Chi-square statistic                  : 1.00e+5
+p-value of test                       :    0.28
+
+
+-----------------------------------------------
+Anderson-Darling statistic            :    0.84
+p-value of test                       :    0.16
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.38
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_SampleProd test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   t = 10
+
+
+-----------------------------------------------
+Anderson-Darling statistic            :    0.33
+p-value of test                       :    0.67
+
+-----------------------------------------------
+CPU time used                    :  00:00:03.41
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_SampleProd test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   t = 30
+
+
+-----------------------------------------------
+Anderson-Darling statistic            :    0.33
+p-value of test                       :    0.67
+
+-----------------------------------------------
+CPU time used                    :  00:00:05.71
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_SampleMean test:
+-----------------------------------------------
+   N = 10000000,  n = 20,  r =  0
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    : 1.72e-4
+p-value of test                       :    0.55
+
+Kolmogorov-Smirnov- statistic = D-    : 2.00e-4
+p-value of test                       :    0.45
+
+Anderson-Darling statistic = A2       :    0.41
+p-value of test                       :    0.84
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.65
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_SampleCorr test:
+-----------------------------------------------
+   N =  1,  n = 500000000,  r =  0,   k = 1
+
+
+-----------------------------------------------
+Normal statistic                      :    1.37
+p-value of test                       :    0.09
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.20
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_AppearanceSpacings test:
+-----------------------------------------------
+   N =  1,   Q = 10000000,   K = 400000000,   r = 0,   s = 30,   L = 15
+
+   Sequences of n = (K + Q)L =   6150000000 bits
+   Q = 10000000 initialization blocks
+   K = 400000000 blocks for the test
+   the blocks have L = 15 bits
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -1.77
+p-value of test                       :    0.96
+
+-----------------------------------------------
+CPU time used                    :  00:00:18.22
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_AppearanceSpacings test:
+-----------------------------------------------
+   N =  1,   Q = 10000000,   K = 100000000,   r = 20,   s = 10,   L = 15
+
+   Sequences of n = (K + Q)L =   1650000000 bits
+   Q = 10000000 initialization blocks
+   K = 100000000 blocks for the test
+   the blocks have L = 15 bits
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -1.78
+p-value of test                       :    0.96
+
+-----------------------------------------------
+CPU time used                    :  00:00:05.49
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_WeightDistrib test:
+-----------------------------------------------
+   N =  1,  n = 2000000,  r =  0,  k = 256,  Alpha =      0,  Beta =  0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   56.97
+p-value of test                       :    0.13
+
+-----------------------------------------------
+CPU time used                    :  00:00:04.79
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_WeightDistrib test:
+-----------------------------------------------
+   N =  1,  n = 2000000,  r =  8,  k = 256,  Alpha =      0,  Beta =  0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   32.39
+p-value of test                       :    0.94
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.75
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_WeightDistrib test:
+-----------------------------------------------
+   N =  1,  n = 2000000,  r = 16,  k = 256,  Alpha =      0,  Beta =  0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   33.24
+p-value of test                       :    0.92
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.75
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_WeightDistrib test:
+-----------------------------------------------
+   N =  1,  n = 2000000,  r = 24,  k = 256,  Alpha =      0,  Beta =  0.125
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   46
+Chi-square statistic                  :   41.33
+p-value of test                       :    0.67
+
+-----------------------------------------------
+CPU time used                    :  00:00:06.83
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+svaria_SumCollector test:
+-----------------------------------------------
+   N =  1,  n = 20000000,  r =  0,   g = 10
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   25
+Chi-square statistic                  :   25.75
+p-value of test                       :    0.42
+
+-----------------------------------------------
+CPU time used                    :  00:00:03.93
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 1000000,  r =  0,    s = 30,    L = 60,    k = 60
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    4
+Chi-square statistic                  :    5.72
+p-value of test                       :    0.22
+
+-----------------------------------------------
+CPU time used                    :  00:00:29.03
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 1000000,  r = 20,    s = 10,    L = 60,    k = 60
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    4
+Chi-square statistic                  :    6.97
+p-value of test                       :    0.14
+
+-----------------------------------------------
+CPU time used                    :  00:00:34.60
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 50000,  r =  0,    s = 30,    L = 300,    k = 300
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    2.46
+p-value of test                       :    0.48
+
+-----------------------------------------------
+CPU time used                    :  00:00:51.22
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 50000,  r = 20,    s = 10,    L = 300,    k = 300
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    3.10
+p-value of test                       :    0.38
+
+-----------------------------------------------
+CPU time used                    :  00:01:05.89
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 2000,  r =  0,    s = 30,    L = 1200,    k = 1200
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    7.08
+p-value of test                       :    0.07
+
+-----------------------------------------------
+CPU time used                    :  00:01:10.00
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 2000,  r = 20,    s = 10,    L = 1200,    k = 1200
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    4.09
+p-value of test                       :    0.25
+
+-----------------------------------------------
+CPU time used                    :  00:01:28.20
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_Savir2 test:
+-----------------------------------------------
+   N =  1,  n = 20000000,  r =  0,    m = 1048576,    t = 30
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   17
+Chi-square statistic                  :   13.13
+p-value of test                       :    0.73
+
+-----------------------------------------------
+CPU time used                    :  00:00:05.73
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_GCD test:
+-----------------------------------------------
+   N =  1,  n = 100000000,  r =  0,   s = 30
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 2465
+Chi2 statistic for GCD values         : 2490.33
+p-value of test                       :    0.36
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:27.84
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+smarsa_GCD test:
+-----------------------------------------------
+   N =  1,  n = 40000000,  r = 10,   s = 20
+
+
+-----------------------------------------------
+Number of degrees of freedom          : 1559
+Chi2 statistic for GCD values         : 1452.78
+p-value of test                       :    0.97
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.95
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 50000000,  r =  0,   s = 30,   L0 =   90,   L1 =   90
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :   46
+ChiSquare statistic                   :   46.72
+p-value of test                       :    0.44
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :   47
+ChiSquare statistic                   :   36.31
+p-value of test                       :    0.87
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :   45
+ChiSquare statistic                   :   50.41
+p-value of test                       :    0.27
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :   36
+ChiSquare statistic                   :   35.18
+p-value of test                       :    0.51
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   23
+ChiSquare statistic                   :   15.03
+p-value of test                       :    0.89
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:38.60
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r = 20,   s = 10,   L0 =   90,   L1 =   90
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :   44
+ChiSquare statistic                   :   28.00
+p-value of test                       :    0.97
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :   45
+ChiSquare statistic                   :   36.17
+p-value of test                       :    0.82
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :   45
+ChiSquare statistic                   :   52.46
+p-value of test                       :    0.21
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :   35
+ChiSquare statistic                   :   44.84
+p-value of test                       :    0.12
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   22
+ChiSquare statistic                   :   18.87
+p-value of test                       :    0.65
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:08.90
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 5000000,  r =  0,   s = 30,   L0 = 1000,   L1 = 1000
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :  140
+ChiSquare statistic                   :  157.72
+p-value of test                       :    0.15
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :  141
+ChiSquare statistic                   :  112.76
+p-value of test                       :    0.96
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :  500
+ChiSquare statistic                   :  487.89
+p-value of test                       :    0.64
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :  132
+ChiSquare statistic                   :  133.08
+p-value of test                       :    0.46
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   72
+ChiSquare statistic                   :   63.47
+p-value of test                       :    0.75
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:35.92
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 1000000,  r = 20,   s = 10,   L0 = 1000,   L1 = 1000
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :  128
+ChiSquare statistic                   :  104.85
+p-value of test                       :    0.93
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :  130
+ChiSquare statistic                   :  131.04
+p-value of test                       :    0.46
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :  500
+ChiSquare statistic                   :  455.28
+p-value of test                       :    0.92
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :  122
+ChiSquare statistic                   :  103.45
+p-value of test                       :    0.89
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   66
+ChiSquare statistic                   :   73.21
+p-value of test                       :    0.25
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.90
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 500000,  r =  0,   s = 30,   L0 = 10000,   L1 = 10000
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :  366
+ChiSquare statistic                   :  333.27
+p-value of test                       :    0.89
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :  366
+ChiSquare statistic                   :  416.78
+p-value of test                       :    0.03
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          : 5000
+ChiSquare statistic                   : 5087.32
+p-value of test                       :    0.19
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :  360
+ChiSquare statistic                   :  315.72
+p-value of test                       :    0.96
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :  192
+ChiSquare statistic                   :  187.31
+p-value of test                       :    0.58
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:33.48
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 100000,  r = 20,   s = 10,   L0 = 10000,   L1 = 10000
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :  318
+ChiSquare statistic                   :  296.99
+p-value of test                       :    0.80
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :  318
+ChiSquare statistic                   :  310.21
+p-value of test                       :    0.61
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          : 5000
+ChiSquare statistic                   : 4989.37
+p-value of test                       :    0.54
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :  315
+ChiSquare statistic                   :  328.94
+p-value of test                       :    0.28
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :  169
+ChiSquare statistic                   :  155.05
+p-value of test                       :    0.77
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.48
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+scomp_LinearComp test:
+-----------------------------------------------
+   N =  1,  n = 120000,  r =  0,    s = 1
+
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   10
+Chi2 statistic for size of jumps      :   11.08
+p-value of test                       :    0.35
+
+
+-----------------------------------------------
+Normal statistic for number of jumps  :   -0.22
+p-value of test                       :    0.59
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:18.92
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+scomp_LinearComp test:
+-----------------------------------------------
+   N =  1,  n = 120000,  r = 29,    s = 1
+
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   10
+Chi2 statistic for size of jumps      :    9.42
+p-value of test                       :    0.49
+
+
+-----------------------------------------------
+Normal statistic for number of jumps  :    1.25
+p-value of test                       :    0.11
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:18.88
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+scomp_LempelZiv test:
+-----------------------------------------------
+   N = 10,  n = 33554432,  r =  0,   s =   30,   k =   25
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.15
+p-value of test                       :    0.58
+
+Kolmogorov-Smirnov- statistic = D-    :    0.20
+p-value of test                       :    0.41
+
+Anderson-Darling statistic = A2       :    0.57
+p-value of test                       :    0.67
+
+Tests on the sum of all N observations
+Standardized normal statistic         :    0.54
+p-value of test                       :    0.30
+
+Sample variance                       :    1.60
+p-value of test                       :    0.11
+
+-----------------------------------------------
+CPU time used                    :  00:00:23.30
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sspectral_Fourier3 test:
+-----------------------------------------------
+   N = 50000,  n = 16384,  r =  0,   s =   30,   k =   14
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    : 6.61e-3
+p-value of test                       :    0.70
+
+Kolmogorov-Smirnov- statistic = D-    : 7.97e-3
+p-value of test                       :    0.59
+
+Anderson-Darling statistic = A2       :    0.24
+p-value of test                       :    0.98
+
+-----------------------------------------------
+CPU time used                    :  00:00:21.78
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sspectral_Fourier3 test:
+-----------------------------------------------
+   N = 50000,  n = 16384,  r = 20,   s =   10,   k =   14
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :   0.013
+p-value of test                       :    0.25
+
+Kolmogorov-Smirnov- statistic = D-    : 5.21e-3
+p-value of test                       :    0.80
+
+Anderson-Darling statistic = A2       :    0.70
+p-value of test                       :    0.56
+
+-----------------------------------------------
+CPU time used                    :  00:00:22.57
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_LongestHeadRun test:
+-----------------------------------------------
+   N =  1,  n = 1000,  r =  0,   s = 30,   L = 10000020
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    8
+Chi-square statistic                  :    5.99
+p-value of test                       :    0.65
+
+-----------------------------------------------
+Global longest run of 1               :   33.00
+p-value of test                       :    0.44
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:01:17.96
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_LongestHeadRun test:
+-----------------------------------------------
+   N =  1,  n = 300,  r = 20,   s = 10,   L = 10000020
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    7
+Chi-square statistic                  :   14.21
+p-value of test                       :    0.05
+
+-----------------------------------------------
+Global longest run of 1               :   30.00
+p-value of test                       :    0.50
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:27.36
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_PeriodsInStrings test:
+-----------------------------------------------
+   N =  1,  n = 300000000,  r =  0,   s =   30
+
+
+-----------------------------------------------
+Number of degrees of freedom          :  302
+Chi-square statistic                  :  331.53
+p-value of test                       :    0.12
+
+-----------------------------------------------
+CPU time used                    :  00:00:21.15
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_PeriodsInStrings test:
+-----------------------------------------------
+   N =  1,  n = 300000000,  r = 15,   s =   15
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   56
+Chi-square statistic                  :   49.60
+p-value of test                       :    0.71
+
+-----------------------------------------------
+CPU time used                    :  00:00:13.61
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingWeight2 test:
+-----------------------------------------------
+   N = 100,  n = 100000000,  r =  0,   s = 30,   L = 1000000
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :   0.051
+p-value of test                       :    0.58
+
+Kolmogorov-Smirnov- statistic = D-    :   0.037
+p-value of test                       :    0.74
+
+Anderson-Darling statistic = A2       :    0.36
+p-value of test                       :    0.89
+
+Test on the sum of all N observations
+Number of degrees of freedom          : 10000
+Chi-square statistic                  : 9929.58
+p-value of test                       :    0.69
+
+-----------------------------------------------
+CPU time used                    :  00:00:11.44
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingWeight2 test:
+-----------------------------------------------
+   N = 30,  n = 100000000,  r = 20,   s = 10,   L = 1000000
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.12
+p-value of test                       :    0.42
+
+Kolmogorov-Smirnov- statistic = D-    :   0.066
+p-value of test                       :    0.74
+
+Anderson-Darling statistic = A2       :    0.57
+p-value of test                       :    0.67
+
+Test on the sum of all N observations
+Number of degrees of freedom          : 3000
+Chi-square statistic                  : 2949.10
+p-value of test                       :    0.74
+
+-----------------------------------------------
+CPU time used                    :  00:00:07.01
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 500000000,  r =  0,   s = 30,   L = 30
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.77
+p-value of test                       :    0.78
+
+-----------------------------------------------
+CPU time used                    :  00:00:18.82
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 50000000,  r =  0,   s = 30,   L = 300
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.42
+p-value of test                       :    0.66
+
+-----------------------------------------------
+CPU time used                    :  00:00:17.78
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   s = 30,   L = 1200
+
+
+
+-----------------------------------------------
+Normal statistic                      :   0.050
+p-value of test                       :    0.48
+
+-----------------------------------------------
+CPU time used                    :  00:00:14.03
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 300000000,  r =  0,   s = 30,   L = 30,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          :  577
+Chi-square statistic                  :  651.95
+p-value of test                       :    0.02
+
+-----------------------------------------------
+CPU time used                    :  00:00:22.05
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 100000000,  r = 20,   s = 10,   L = 30,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          :  533
+Chi-square statistic                  :  528.17
+p-value of test                       :    0.55
+
+-----------------------------------------------
+CPU time used                    :  00:00:16.59
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 30000000,  r =  0,   s = 30,   L = 300,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          : 4117
+Chi-square statistic                  : 4052.98
+p-value of test                       :    0.76
+
+-----------------------------------------------
+CPU time used                    :  00:00:21.44
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r = 20,   s = 10,   L = 300,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          : 3585
+Chi-square statistic                  : 3659.31
+p-value of test                       :    0.19
+
+-----------------------------------------------
+CPU time used                    :  00:00:14.78
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 10000000,  r =  0,   s = 30,   L = 1200,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          : 11825
+Chi-square statistic                  :11848.37
+p-value of test                       :    0.44
+
+-----------------------------------------------
+CPU time used                    :  00:00:28.07
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 1000000,  r = 20,   s = 10,   L = 1200,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          : 7473
+Chi-square statistic                  : 7355.50
+p-value of test                       :    0.83
+
+-----------------------------------------------
+CPU time used                    :  00:00:05.71
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_Run test:
+-----------------------------------------------
+   N =  1,  n = 1000000000,  r =  0,   s =   30
+
+
+-----------------------------------------------
+Total number of 1 runs:  1000000003
+
+Number of degrees of freedom          :   52
+Chi2 statistic for number of runs     :   49.97
+p-value of test                       :    0.55
+
+
+-----------------------------------------------
+Total number of bits:  4000062930
+
+Normal statistic for number of bits   :    0.70
+p-value of test                       :    0.24
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:28.86
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_Run test:
+-----------------------------------------------
+   N =  1,  n = 1000000000,  r = 20,   s =   10
+
+
+-----------------------------------------------
+Total number of 1 runs:  1000000000
+
+Number of degrees of freedom          :   52
+Chi2 statistic for number of runs     :   58.83
+p-value of test                       :    0.24
+
+
+-----------------------------------------------
+Total number of bits:  3999945420
+
+Normal statistic for number of bits   :   -0.61
+p-value of test                       :    0.73
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:38.65
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N = 10,  n = 1000000021,  r =  0,   s = 30,   d = 1
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.17
+p-value of test                       :    0.51
+
+Kolmogorov-Smirnov- statistic = D-    :    0.22
+p-value of test                       :    0.33
+
+Anderson-Darling statistic = A2       :    0.68
+p-value of test                       :    0.57
+
+Tests on the sum of all N observations
+Standardized normal statistic         :    0.13
+p-value of test                       :    0.45
+
+Sample variance                       :    0.46
+p-value of test                       :    0.90
+
+-----------------------------------------------
+CPU time used                    :  00:00:26.53
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N =  5,  n = 1000000001,  r = 20,   s = 10,   d = 1
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.20
+p-value of test                       :    0.59
+
+Kolmogorov-Smirnov- statistic = D-    :    0.22
+p-value of test                       :    0.55
+
+Anderson-Darling statistic = A2       :    0.34
+p-value of test                       :    0.90
+
+Tests on the sum of all N observations
+Standardized normal statistic         :  -0.078
+p-value of test                       :    0.53
+
+Sample variance                       :    0.48
+p-value of test                       :    0.75
+
+-----------------------------------------------
+CPU time used                    :  00:00:34.44
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N = 10,  n = 1000000020,  r =  0,   s = 30,   d = 30
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.28
+p-value of test                       :    0.18
+
+Kolmogorov-Smirnov- statistic = D-    :    0.13
+p-value of test                       :    0.66
+
+Anderson-Darling statistic = A2       :    0.89
+p-value of test                       :    0.42
+
+Tests on the sum of all N observations
+Standardized normal statistic         :   -0.84
+p-value of test                       :    0.80
+
+Sample variance                       :    1.46
+p-value of test                       :    0.16
+
+-----------------------------------------------
+CPU time used                    :  00:00:24.13
+
+Generator state:
+
+
+
+
+***********************************************************
+HOST = fluffc-al, Linux
+
+32-bit stdin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N =  5,  n = 1000000010,  r = 20,   s = 10,   d = 10
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :    0.54
+p-value of test                       :    0.04
+
+Kolmogorov-Smirnov- statistic = D-    :   0.074
+p-value of test                       :    0.90
+
+Anderson-Darling statistic = A2       :    1.84
+p-value of test                       :    0.11
+
+Tests on the sum of all N observations
+Standardized normal statistic         :   -1.56
+p-value of test                       :    0.94
+
+Sample variance                       :    0.78
+p-value of test                       :    0.54
+
+-----------------------------------------------
+CPU time used                    :  00:00:31.40
+
+Generator state:
+
+
+
+
 
 ========= Summary results of Crush =========
 
  Version:          TestU01 1.2.3
  Generator:        32-bit stdin
  Number of statistics:  144
- Total CPU time:   00:38:53.40
+ Total CPU time:   00:45:40.19
 
  All tests were passed
 

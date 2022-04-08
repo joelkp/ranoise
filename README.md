@@ -79,6 +79,12 @@ make && ./ranoise32 | TestU01_stdin -s
 
 ```
 
+Or to write everything from a verbose TestU01 run (more than just the summary at the end), plus a final count of 32-bit samples generated, to a file:
+
+```
+make && ./ranoise32 | TestU01_stdin -sv 3>&1 2>&3 | tee file.txt
+```
+
 Current results
 ---------------
 
