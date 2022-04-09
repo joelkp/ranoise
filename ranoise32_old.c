@@ -75,7 +75,7 @@ static inline int32_t ranoise32_old_next(uint32_t *restrict pos) {
 int main(int argc, char *argv[]) {
 	int i = 0;
 	for (;;) {
-		/* chaos whaveshaper test */
+		/* chaos waveshaper test */
 		uint32_t x = i++;
 		add_output(ranoise32_old(x));
 	}
