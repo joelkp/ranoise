@@ -62,6 +62,37 @@ int32_t ranoise32b(uint32_t x) {
 }
 ```
 
+### SplitMix32
+Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush, and such functions can easily be changed for random access use too. The 32-bit version of SplitMix does poorer and fails some Crush and more BigCrush tests, however. Higher-quality variations of ranoise32 do better in testing.
+
+#### `splitmix32a`
+A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares slightly better than plain `splitmix32` in Crush and BigCrush tests.
+```
+uint32_t splitmix32a(uint32_t *pos) {
+        uint32_t x = *pos += 2654435769UL;
+        x ^= x >> 15;
+        x *= 0x85ebca6b;
+        x ^= x >> 13;
+        x *= 0xc2b2ae35;
+        x ^= x >> 16;
+        return x;
+}
+```
+
+#### `splitmix32b`
+I also decided to include a `splitmix32b`, which fully replaces the 32-bit MurmurHash3 fmix function with another integer-to-integer hash function of the same form, the best currently found and provided by Christopher Wellons's ['hash-prospector' project](https://github.com/skeeto/hash-prospector). This was a little disappointing; how well such hash functions work as PRNGs seems a little more haphazard than how strictly good they are; the best result may also depend on finding a suitable-enough increment constant for each function. The usual quick pick of the constant based on the golden ratio doesn't work well for this function (in SmallCrush). The one used instead makes for Crush and BigCrush results almost as good as for `splitmix32a`.
+```
+uint32_t splitmix32b(uint32_t *pos) {
+        uint32_t x = *pos += 2175813527UL;
+        x ^= x >> 15;
+        x *= 0xd168aaad;
+        x ^= x >> 15;
+        x *= 0xaf723597;
+        x ^= x >> 15;
+        return x;
+}
+```
+
 Running statistical tests
 -------------------------
 

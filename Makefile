@@ -6,7 +6,7 @@ BIN=avalanche-test \
     ranoise32 ranoise32_old ranoise32b \
     lcg32 \
     lcg64 \
-    splitmix32 \
+    splitmix32 splitmix32a splitmix32b \
     xorshift32
 
 all: $(BIN)
@@ -33,6 +33,12 @@ lcg64: lcg64.c include/testwrite.h
 
 splitmix32: splitmix32.c include/muvaror32.h include/testwrite.h
 	$(CC) -o splitmix32 $(CFLAGS) splitmix32.c
+
+splitmix32a: splitmix32a.c include/muvaror32.h include/testwrite.h
+	$(CC) -o splitmix32a $(CFLAGS) splitmix32a.c
+
+splitmix32b: splitmix32b.c include/testwrite.h
+	$(CC) -o splitmix32b $(CFLAGS) splitmix32b.c
 
 xorshift32: xorshift32.c include/testwrite.h
 	$(CC) -o xorshift32 $(CFLAGS) xorshift32.c
