@@ -80,10 +80,10 @@ uint32_t splitmix32a(uint32_t *pos) {
 ```
 
 #### `splitmix32b`
-I also decided to include a `splitmix32b`, which fully replaces the 32-bit MurmurHash3 fmix function with another integer-to-integer hash function of the same form, the best currently found and provided by Christopher Wellons's ['hash-prospector' project](https://github.com/skeeto/hash-prospector). This was a little disappointing; how well such hash functions work as PRNGs seems a little more haphazard than how strictly good they are; the best result may also depend on finding a suitable-enough increment constant for each function. The usual quick pick of the constant based on the golden ratio doesn't work well for this function (in SmallCrush). The one used instead makes for Crush and BigCrush results almost as good as for `splitmix32a`.
+I also decided to include a `splitmix32b`, which fully replaces the 32-bit MurmurHash3 fmix function with another integer-to-integer hash function of the same form, the best currently found and provided by Christopher Wellons's ['hash-prospector' project](https://github.com/skeeto/hash-prospector). This was a little disappointing; how well variations of this kind of function work _in testing as PRNGs_ seems a little more haphazard than how strictly good they are as hash functions. The best result may also depend on e.g. finding a suitable increment constant peculiar to the function tested. The usual quick pick of the constant based on the golden ratio doesn't work well for this function (in SmallCrush), and with the one used instead (after some trial and error), results in Crush and BigCrush are so-so, and don't give reason to prefer this function.
 ```
 uint32_t splitmix32b(uint32_t *pos) {
-        uint32_t x = *pos += 2175813527UL;
+        uint32_t x = *pos += 2452817881UL;
         x ^= x >> 15;
         x *= 0xd168aaad;
         x ^= x >> 15;

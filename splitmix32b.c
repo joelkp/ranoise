@@ -43,13 +43,13 @@ lowbias32(uint32_t x)
 
 /*
  * In my TestU01 tests, the usual increment based on the golden ratio
- * did not work well here (SmallCrush failures), so for this function
- * the constant is (simple arithmetic) gold minus silver plus bronze.
+ * did not work well here (SmallCrush failures) and for this function
+ * the constant is based on the sum of the first four metallic means.
  *
- * (A constant simply based on the silver ratio was also tried but in
- * BigCrush results were poorer than expected, hence this was tried.)
+ * (Some other constants including one based on the silver ratio were
+ * also tried, but results were poorer. This one appears reasonable.)
  */
-#define ALTH32 2175813527UL /* 2654435769UL - 1779033703UL + 1300411461UL */
+#define ALTH32 2452817881UL
 
 /**
  * Get next value for and update \p pos.
