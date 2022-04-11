@@ -7,6 +7,7 @@ BIN=avalanche-test \
     lcg32 \
     lcg64 \
     splitmix32 splitmix32a splitmix32b \
+    mulberry32 \
     xorshift32
 
 all: $(BIN)
@@ -39,6 +40,9 @@ splitmix32a: splitmix32a.c include/muvaror32.h include/testwrite.h
 
 splitmix32b: splitmix32b.c include/testwrite.h
 	$(CC) -o splitmix32b $(CFLAGS) splitmix32b.c
+
+mulberry32: mulberry32.c include/testwrite.h
+	$(CC) -o mulberry32 $(CFLAGS) mulberry32.c
 
 xorshift32: xorshift32.c include/testwrite.h
 	$(CC) -o xorshift32 $(CFLAGS) xorshift32.c
