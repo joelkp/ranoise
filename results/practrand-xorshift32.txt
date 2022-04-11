@@ -1,0 +1,32 @@
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 128 megabytes (2^27 bytes), time= 2.5 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BCFN(2+0,13-3,T)                  R= +79.2  p =  2.9e-37    FAIL !!!       
+  BCFN(2+1,13-3,T)                  R= +10.7  p =  7.6e-5   mildly suspicious
+  DC6-9x1Bytes-1                    R=+919.3  p =  2.2e-564   FAIL !!!!!!!   
+  Gap-16:A                          R=  +6.2  p =  9.0e-5   mildly suspicious
+  BRank(12):128(4)                  R= +3922  p~=  8e-2087    FAIL !!!!!!!!  
+  BRank(12):256(4)                  R= +9433  p~=  7e-5018    FAIL !!!!!!!!  
+  BRank(12):384(1)                  R= +7472  p~=  2e-2250    FAIL !!!!!!!!  
+  BRank(12):512(2)                  R=+14464  p~=  4e-4355    FAIL !!!!!!!!  
+  BRank(12):768(1)                  R=+15738  p~=  8e-4739    FAIL !!!!!!!!  
+  BRank(12):1K(2)                   R=+30051  p~=  2e-9047    FAIL !!!!!!!!  
+  BRank(12):1536(1)                 R=+32271  p~=  1e-9715    FAIL !!!!!!!!  
+  [Low8/32]Gap-16:A                 R=  +7.8  p =  5.8e-6   suspicious       
+  [Low8/32]BRank(12):128(4)         R= +3922  p~=  8e-2087    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):256(2)         R= +6670  p~=  5e-2009    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):384(1)         R= +7472  p~=  2e-2250    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):512(2)         R=+14464  p~=  4e-4355    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):768(1)         R=+15738  p~=  8e-4739    FAIL !!!!!!!!  
+  [Low8/32]BRank(12):1K(1)          R=+21249  p~=  9e-6398    FAIL !!!!!!!!  
+  [Low1/32]Gap-16:A                 R=  +6.5  p =  8.5e-5   mildly suspicious
+  [Low1/32]BRank(12):128(2)         R= +2773  p~=  6.9e-836   FAIL !!!!!!!   
+  [Low1/32]BRank(12):256(2)         R= +6670  p~=  5e-2009    FAIL !!!!!!!!  
+  [Low1/32]BRank(12):384(1)         R= +7472  p~=  2e-2250    FAIL !!!!!!!!  
+  [Low1/32]BRank(12):512(1)         R=+10227  p~=  8e-3080    FAIL !!!!!!!!  
+  ...and 133 test result(s) without anomalies
+

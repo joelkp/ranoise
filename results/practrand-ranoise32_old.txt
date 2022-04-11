@@ -1,0 +1,21 @@
+RNG_test using PractRand version 0.95
+RNG = RNG_stdin32, seed = unknown
+test set = core, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=unknown
+length= 128 megabytes (2^27 bytes), time= 2.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BRank(12):128(4)                  R= +14.0  p~=  2.9e-8   suspicious       
+  BRank(12):256(4)                  R=+103.9  p~=  4.6e-56    FAIL !!!!      
+  BRank(12):384(1)                  R= +88.2  p~=  1.4e-27    FAIL !!        
+  BRank(12):512(2)                  R=+307.4  p~=  1.4e-93    FAIL !!!!!     
+  BRank(12):768(1)                  R=+346.5  p~=  2.4e-105   FAIL !!!!!     
+  BRank(12):1K(2)                   R= +2241  p~=  1.6e-675   FAIL !!!!!!!   
+  BRank(12):1536(1)                 R=+863.2  p~=  7.2e-261   FAIL !!!!!!    
+  TMFn(2+0):wl                      R= +51.0  p~=   1e-23     FAIL !!        
+  TMFn(2+1):wl                      R=+257.7  p~=   4e-148    FAIL !!!!!     
+  TMFn(2+2):wl                      R=+191.4  p~=   4e-108    FAIL !!!!!     
+  [Low8/32]TMFn(2+0):wl             R=+224.4  p~=   5e-128    FAIL !!!!!     
+  [Low1/32]Gap-16:A                 R= +11.2  p =  1.3e-8    VERY SUSPICIOUS 
+  ...and 144 test result(s) without anomalies
+

@@ -21,10 +21,12 @@ The bare functions
 
 While arguably uglier than using the macros or inline functions for bitrotation, etc., here's everything-in-one-go versions of the function definitions.
 
-For audio, there's no audible improvement when including the xor-and-rightshift steps which were added to improve avalanching and quality of bits below the highest, assuming the higher bits define most of the amplitude of the signal listened to in the usual way. The same may be true for graphics and what's visible.
+For audio, there's no audible improvement when including the xor-and-rightshift steps which were added to improve avalanching and quality of bits below the highest, assuming the higher bits define most of the amplitude of the signal listened to in the usual way. The same may be true for graphics and what's visible. However, those looking to extract two rather than one samples from each output value (splitting each 32-bit sample into two 16-bit samples) need one of the highest-quality options.
 
 ### `ranoise32`
-Stripped-down version of `ranoise32b`, containing only the most important part of the algorithm. Tested with an increasing counter as the argument, it fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer.
+Stripped-down version of `ranoise32b`, containing only the most important part of the algorithm.
+
+Tested with an increasing counter as the argument, it fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer; this is also the case in both PractRand and dieharder testing.
 ```
 int32_t ranoise32(uint32_t x) {
         x *= 2654435769UL;
@@ -32,12 +34,12 @@ int32_t ranoise32(uint32_t x) {
         return x;
 }
 ```
-This is the function most likely to be useful for signal processing purposes.
+This is the function most likely to be useful for signal processing purposes, in situations where how it sounds or looks matters far more than statistical properties. The highest output bits are the best.
 
 ### `ranoise32_old`
-This is an earlier version with some quirks and flaws. Tested with an increasing counter as the argument, it fails 3 of TestU01's medium-sized Crush tests. It works well as long as changes to x between calls are small or have lower bits set.
+This is an earlier version with some quirks and flaws, worth keeping for the distinctive smoothness of the output. It works well as long as changes to x between calls are small or have lower bits set.
 
-It's worth keeping for the distinctive smoothness of the output.
+Tested with an increasing counter as the argument, it fails 3 of TestU01's medium-sized Crush tests. In PractRand testing, it has a number of failures similar to xorshift32, but the basic problem is different.
 ```
 int32_t ranoise32_old(uint32_t x) {
         x *= 2654435769UL;
@@ -51,7 +53,7 @@ If the last line before the `return` is removed, the result is a function with f
 The last step also works well to copy to the later `ranoise32` function as an improvement for lower bits, but slightly less well than the alternative solution instead found in `ranoise32b`. (The difference is a few TestU01 BigCrush failures.) However, the old last step actually works _better_ for variations of the new function which re-add a bitrotation offset so as to produce one of 31 alternative outputs (easiest to do using the `MUVAROR32` macro used in the C file, by changing the last argument from 0 to another number), and then any offset is basically fine to use, unlike this old function where the number 14 appears optimal.
 
 ### `ranoise32b`
-This is a reworked version which so far seems roughly as good as PRNGs with only 32 bits of state can be. (Many 64-bit PRNGs can do better.) Tested with an increasing counter as the argument, it passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests (mainly 4 "Gap" tests).
+This is a reworked version which so far seems roughly as good as PRNGs with only 32 bits of state can be. (Many 64-bit PRNGs can do better.) Tested with an increasing counter as the argument, it passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests (mainly 4 "Gap" tests). In PractRand, there's a failed test at the 2 GB mark.
 ```
 int32_t ranoise32b(uint32_t x) {
         x *= 2654435769UL;
@@ -63,10 +65,10 @@ int32_t ranoise32b(uint32_t x) {
 ```
 
 ### SplitMix32
-Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush, and such functions can easily be changed for random access use too. The 32-bit version of SplitMix does poorer and fails some Crush and more BigCrush tests, however. Higher-quality variations of ranoise32 do better in testing.
+Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush, and such functions can easily be changed for random access use too. The 32-bit version of SplitMix does poorer in testing with both TestU01 (failing some Crush and more BigCrush tests) and PractRand, however. Higher-quality variations of ranoise32 do better in testing.
 
 #### `splitmix32a`
-A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares slightly better than plain `splitmix32` in Crush and BigCrush tests.
+A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares slightly better than plain `splitmix32` in Crush and BigCrush tests. In PractRand, this variation has a failure at the 1 GB mark, whereas plain `splitmix32` fails in the preceding 512 MB round.
 ```
 uint32_t splitmix32a(uint32_t *pos) {
         uint32_t x = *pos += 2654435769UL;
@@ -80,7 +82,7 @@ uint32_t splitmix32a(uint32_t *pos) {
 ```
 
 #### `splitmix32b`
-I also decided to include a `splitmix32b`, which fully replaces the 32-bit MurmurHash3 fmix function with another integer-to-integer hash function of the same form, the best currently found and provided by Christopher Wellons's ['hash-prospector' project](https://github.com/skeeto/hash-prospector). This was a little disappointing; how well variations of this kind of function work _in testing as PRNGs_ seems a little more haphazard than how strictly good they are as hash functions. The best result may also depend on e.g. finding a suitable increment constant peculiar to the function tested. The usual quick pick of the constant based on the golden ratio doesn't work well for this function (in SmallCrush), and with the one used instead (after some trial and error), results in Crush and BigCrush are so-so, and don't give reason to prefer this function.
+I also decided to include a `splitmix32b`, which fully replaces the 32-bit MurmurHash3 fmix function with another integer-to-integer hash function of the same form, the best currently found and provided by Christopher Wellons's ['hash-prospector' project](https://github.com/skeeto/hash-prospector). This was a little tricky and fiddly to get working well, because some failures at all test levels in TestU01 testing came and went haphazardly with variations. How well variations of this kind of function work _in testing as PRNGs_ seems more complicated than how strictly good they are as hash functions. The best result may also depend on finding a suitable increment constant peculiar to the function tested; the usual quick pick of the constant based on the golden ratio doesn't work well in SmallCrush testing for this function. On the whole, the below version is roughly as good as `splitmix32a` in both TestU01 and PractRand testing.
 ```
 uint32_t splitmix32b(uint32_t *pos) {
         uint32_t x = *pos += 2452817881UL;
@@ -114,9 +116,15 @@ Or to write everything from a verbose TestU01 run (more than just the summary at
 make && ./ranoise32 | TestU01_stdin -sv 3>&1 2>&3 | tee file.txt
 ```
 
+For [PractRand](http://pracrand.sourceforge.net/)'s `RNG_test` utility (which is far more critical than dieharder and way faster than TestU01 is beyond SmallCrush):
+
+```
+make && ./ranoise32 | RNG_test stdin32
+```
+
 Current results
 ---------------
 
-Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/). Full TestU01 results (`smallcrush-*`, `crush-*`, `bigcrush-*`) are rather verbose, but the short summary can be found at the end of each file.
+Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/). PractRand (`practrand-*`) is good for quick comparisons. Full TestU01 results (`smallcrush-*`, `crush-*`, `bigcrush-*`) are rather verbose, but the short summary can be found at the end of each file. For a more detailed look at what goes wrong in lower-quality PRNGs, it can be interesting to look at dieharder results (`dieharder-*`).
 
 The files for TestU01 tests named `*-rev.txt` use the `-r` option for `TestU01_stdin` to reverse the order of bits within each 32-bit word. When this results in more failures, it points towards randomness in the lowest bits being of worse quality than that in higher bits. (TestU01 is less sensitive to flaws in the lowest bits.)
