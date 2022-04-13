@@ -40,7 +40,7 @@ This is the function most likely to be useful for signal processing purposes, in
 #### `ranoise32_old`
 This is an earlier version with some quirks and flaws, worth keeping for the distinctive smoothness of the output. It works well as long as changes to x between calls are small or have lower bits set.
 
-Tested with an increasing counter as the argument, it fails 3 of TestU01's medium-sized Crush tests. In PractRand testing, the number of failures (at the 128 MB stage) is similar to that for xorshift32, but the basic problem is different.
+Tested with an increasing counter as the argument, it fails 3 of TestU01's medium-sized Crush tests. In PractRand testing, like other low-quality PRNGs (32-bit LCGs, xorshift32, etc.), it fails at a 1 MB size, though only once.
 ```
 int32_t ranoise32_old(uint32_t x) {
         x *= 2654435769UL;
@@ -136,7 +136,7 @@ make && ./ranoise32 | TestU01_stdin -sv 3>&1 2>&3 | tee file.txt
 For [PractRand](http://pracrand.sourceforge.net/)'s `RNG_test` utility (which is far more critical than dieharder and way faster than TestU01 is beyond SmallCrush):
 
 ```
-make && ./ranoise32 | RNG_test stdin32
+make && ./ranoise32 | RNG_test stdin32 -tlmin 1MB
 ```
 
 Current results

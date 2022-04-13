@@ -3,17 +3,49 @@ RNG = RNG_stdin32, seed = unknown
 test set = core, folding = standard (32 bit)
 
 rng=RNG_stdin32, seed=unknown
-length= 256 megabytes (2^28 bytes), time= 3.3 seconds
+length= 1 megabyte (2^20 bytes), time= 0.1 seconds
+  no anomalies in 76 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 2 megabytes (2^21 bytes), time= 1.6 seconds
+  no anomalies in 88 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 4 megabytes (2^22 bytes), time= 3.0 seconds
+  no anomalies in 99 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 8 megabytes (2^23 bytes), time= 4.5 seconds
+  no anomalies in 108 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 16 megabytes (2^24 bytes), time= 6.1 seconds
+  no anomalies in 120 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 32 megabytes (2^25 bytes), time= 7.8 seconds
+  no anomalies in 131 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 64 megabytes (2^26 bytes), time= 9.7 seconds
+  no anomalies in 142 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 128 megabytes (2^27 bytes), time= 11.9 seconds
+  no anomalies in 156 test result(s)
+
+rng=RNG_stdin32, seed=unknown
+length= 256 megabytes (2^28 bytes), time= 15.0 seconds
   no anomalies in 168 test result(s)
 
 rng=RNG_stdin32, seed=unknown
-length= 512 megabytes (2^29 bytes), time= 7.9 seconds
+length= 512 megabytes (2^29 bytes), time= 19.5 seconds
   Test Name                         Raw       Processed     Evaluation
   FPF-14+6/16:all                   R=  +7.2  p =  3.0e-6   suspicious       
   ...and 179 test result(s) without anomalies
 
 rng=RNG_stdin32, seed=unknown
-length= 1 gigabyte (2^30 bytes), time= 15.8 seconds
+length= 1 gigabyte (2^30 bytes), time= 27.3 seconds
   Test Name                         Raw       Processed     Evaluation
   FPF-14+6/16:(0,14-0)              R=  +8.0  p =  5.4e-7   mildly suspicious
   FPF-14+6/16:(1,14-0)              R= +11.6  p =  2.2e-10  very suspicious  
