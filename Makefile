@@ -3,7 +3,7 @@ CC=cc
 CFLAGS=-W -Wall -O3 -Iinclude
 LFLAGS=-lm
 BIN=avalanche-test \
-    ranoise32 ranoise32_old ranoise32a ranoise32b ranoise32c \
+    ranoise32 ranoise32_old ranoise32a ranoise32b \
     lcg32 \
     lcg64 \
     splitmix32 splitmix32a splitmix32b \
@@ -28,9 +28,6 @@ ranoise32a: ranoise32a.c include/muvaror32.h include/testwrite.h
 
 ranoise32b: ranoise32b.c include/muvaror32.h include/testwrite.h
 	$(CC) -o ranoise32b $(CFLAGS) ranoise32b.c
-
-ranoise32c: ranoise32c.c include/muvaror32.h include/testwrite.h
-	$(CC) -o ranoise32c $(CFLAGS) ranoise32c.c
 
 lcg32: lcg32.c include/testwrite.h
 	$(CC) -o lcg32 $(CFLAGS) lcg32.c

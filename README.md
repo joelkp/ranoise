@@ -12,7 +12,6 @@ See the article "[Random access noise: Avalanche effect through chaotic waveshap
  * `ranoise32_old` -- Older medium-quality version (mostly obsoleted by `ranoise32b`)
  * `ranoise32a` -- Higher-quality version (compares well to SplitMix32)
  * `ranoise32b` -- Slightly different version, does better in PractRand testing
- * `ranoise32c` -- Does even better in PractRand, not as well in TestU01
 
 There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](include/muvaror32.h).
 
@@ -74,20 +73,6 @@ int32_t ranoise32b(uint32_t x) {
         x *= 2654435769UL;
         x ^= x >> 15;
         x = (x | 1) * ((x >> (x >> 27)) | (x << (32-(x >> 27))));
-        x ^= x >> 14;
-        return x;
-}
-```
-
-#### `ranoise32c`
-Instead adding the seemingly optimal bitrotation offset 16 mildens PractRand's suspicions until the decisive failures only happen during the 8 GB stage. TestU01 results however worsen almost in proportion, becoming more like those for SplitMix32. Further tweaking the bitshift lengths from 14 and 13 to 15 and 14 mildens PractRand's evaluation again, until suspicions are only expressed in all caps at 16 GB and a wall of failures suddenly appear at 32 GB. This version does even less well with TestU01, however; with 16 normal and 28 `-r` BigCrush failures, it's close to Mulberry32.
-```
-int32_t ranoise32c(uint32_t x) {
-        uint32_t r;
-        x *= 2654435769UL;
-        x ^= x >> 15;
-        r = (x >> 27) + 16;
-        x = (x | 65537) * ((x >> r) | (x << (32-r)));
         x ^= x >> 14;
         return x;
 }
