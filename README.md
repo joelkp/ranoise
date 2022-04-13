@@ -10,7 +10,9 @@ For each "ranoise" function, a function named with a `_next`-suffix is also prov
 See the article "[Random access noise: Avalanche effect through chaotic waveshaping](https://joelkp.frama.io/blog/ran-chaos-waveshape.html)" for more on the development of all this. Currently, programs for the following versions are included:
  * `ranoise32` -- Minimal lower-quality version (compares well to 32-bit LCGs)
  * `ranoise32_old` -- Older medium-quality version (mostly obsoleted by `ranoise32b`)
- * `ranoise32b` -- Higher-quality version (compares well to SplitMix32)
+ * `ranoise32a` -- Higher-quality version (compares well to SplitMix32)
+ * `ranoise32b` -- Slightly different version, does better in PractRand testing
+ * `ranoise32c` -- Does even better in PractRand, not as well in TestU01
 
 There's also a header file for the stuff they and other variations on the same theme have in common, [muvaror32.h](include/muvaror32.h).
 
@@ -25,7 +27,7 @@ While arguably uglier than using the macros or inline functions for bitrotation,
 For audio, there's no audible improvement when including the xor-and-rightshift steps which were added to improve avalanching and quality of bits below the highest, assuming the higher bits define most of the amplitude of the signal listened to in the usual way. The same may be true for graphics and what's visible. However, those looking to extract two rather than one samples from each output value (splitting each 32-bit sample into two 16-bit samples) need one of the highest-quality options.
 
 #### `ranoise32`
-Stripped-down version of `ranoise32b`, containing only the most important part of the algorithm.
+Stripped-down version of `ranoise32a`, containing only the most important part of the algorithm.
 
 Tested with an increasing counter as the argument, it fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer; this is also the case in both PractRand and dieharder testing.
 ```
@@ -36,6 +38,8 @@ int32_t ranoise32(uint32_t x) {
 }
 ```
 This is the function most likely to be useful for signal processing purposes, in situations where how it sounds or looks matters far more than statistical properties. The higher output bits are the best.
+
+It's possible to add a bitrotation offset so as to produce one of 31 alternative outputs (easiest to do using the `MUVAROR32` macro used in the C file, by changing the last argument from 0 to another number).
 
 #### `ranoise32_old`
 This is an earlier version with some quirks and flaws, worth keeping for the distinctive smoothness of the output. It works well as long as changes to x between calls are small or have lower bits set.
@@ -51,16 +55,40 @@ int32_t ranoise32_old(uint32_t x) {
 ```
 If the last line before the `return` is removed, the result is a function with failure patterns in dieharder testing which are very similar to those of a 32-bit LCG. (With that last step included, dieharder testing however passes.)
 
-The last step also works well to copy to the later `ranoise32` function as an improvement for lower bits, but slightly less well than the alternative solution instead found in `ranoise32b`. (The difference is a few TestU01 BigCrush failures.) However, the old last step actually works _better_ for variations of the new function which re-add a bitrotation offset so as to produce one of 31 alternative outputs (easiest to do using the `MUVAROR32` macro used in the C file, by changing the last argument from 0 to another number), and then any offset is basically fine to use, unlike this old function where the number 14 appears optimal.
-
-#### `ranoise32b`
-This is a reworked version which so far seems roughly as good as PRNGs with only 32 bits of state can be. (Many 64-bit PRNGs can do better.) Tested with an increasing counter as the argument, it passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests (mainly 4 "Gap" tests). In PractRand, there's a failed test during the 2 GB stage.
+#### `ranoise32a`
+This is a reworked version which does very well in TestU01 testing for a PRNG with only 32 bits of state. (Many PRNGs with 64-bits or more of state can do better.) Tested with an increasing counter as the argument, it passes TestU01's medium-sized Crush tests, but still fails 5 BigCrush tests (mainly 4 "Gap" tests); though in `-r` mode, there's 3 Crush failures and 7 BigCrush failures. In PractRand, there's a failed test during the 2 GB stage, one round above how well SplitMix32 does.
 ```
-int32_t ranoise32b(uint32_t x) {
+int32_t ranoise32a(uint32_t x) {
         x *= 2654435769UL;
         x ^= x >> 14;
         x = (x | 1) * ((x >> (x >> 27)) | (x << (32-(x >> 27))));
         x ^= x >> 13;
+        return x;
+}
+```
+
+#### `ranoise32b`
+Changing the bitshift lengths from 14 and 13 to 15 and 14 improves PractRand's evaluation (some failures appearing at 4 GB), but increases TestU01 test failures a little (one normal Crush failure, 10 `-r` BigCrush failures).
+```
+int32_t ranoise32b(uint32_t x) {
+        x *= 2654435769UL;
+        x ^= x >> 15;
+        x = (x | 1) * ((x >> (x >> 27)) | (x << (32-(x >> 27))));
+        x ^= x >> 14;
+        return x;
+}
+```
+
+#### `ranoise32c`
+Instead adding the seemingly optimal bitrotation offset 16 mildens PractRand's suspicions until the decisive failures only happen during the 8 GB stage. TestU01 results however worsen almost in proportion, becoming more like those for SplitMix32. Further tweaking the bitshift lengths from 14 and 13 to 15 and 14 mildens PractRand's evaluation again, until suspicions are only expressed in all caps at 16 GB and a wall of failures suddenly appear at 32 GB. This version does even less well with TestU01, however; with 16 normal and 28 `-r` BigCrush failures, it's close to Mulberry32.
+```
+int32_t ranoise32c(uint32_t x) {
+        uint32_t r;
+        x *= 2654435769UL;
+        x ^= x >> 15;
+        r = (x >> 27) + 16;
+        x = (x | 65537) * ((x >> r) | (x << (32-r)));
+        x ^= x >> 14;
         return x;
 }
 ```
@@ -74,7 +102,7 @@ Here's some other PRNGs that could very easily be used in place of ranoise32 fun
 Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush. The 32-bit version of SplitMix does poorer in testing with both TestU01 (failing some Crush and more BigCrush tests) and PractRand, however. Higher-quality variations of ranoise32 do better in testing.
 
 #### `splitmix32a`
-A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares a little better than plain `splitmix32` in Crush and BigCrush tests. In PractRand, this variation fails during the 1 GB stage, whereas plain `splitmix32` fails in the preceding 512 MB round.
+A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares slightly better than plain `splitmix32` in Crush and BigCrush tests (5 or 4 failures in Crush, 9 in BigCrush). In PractRand, this variation fails during the 1 GB stage, whereas plain `splitmix32` fails in the preceding 512 MB round.
 ```
 uint32_t splitmix32a_next(uint32_t *pos) {
         uint32_t x = *pos += 2654435769UL;
@@ -102,7 +130,7 @@ uint32_t splitmix32b_next(uint32_t *pos) {
 ```
 
 ### Mulberry32
-Mulberry32 is another PRNG with results comparable to SplitMix32, and included as `mulberry32`. In testing with TestU01 and PractRand it does roughly as well as `splitmix32a` above. (It does a little better in PractRand, but still has a failure during the 1 GB stage, and a little worse in TestU01.)
+Mulberry32 is another PRNG with results comparable to SplitMix32, and included as `mulberry32`. In testing with TestU01 and PractRand it does roughly as well as `splitmix32a` above. (It does a little better in PractRand, but still has a failure during the 1 GB stage, and somewhat worse in TestU01, with 23 normal BigCrush failures and 16 in `-r` mode.)
 ```
 uint32_t mulberry32_next(uint32_t *pos) {
         uint32_t z = *pos += 0x6D2B79F5UL;
@@ -144,4 +172,4 @@ Current results
 
 Outputs for various tests with the unmodified current programs in this repository can be found under [results/](results/). PractRand (`practrand-*`) is good for quick comparisons. Full TestU01 results (`smallcrush-*`, `crush-*`, `bigcrush-*`) are rather verbose, but the short summary can be found at the end of each file. For a more detailed look at what goes wrong in lower-quality PRNGs, it can be interesting to look at dieharder results (`dieharder-*`).
 
-The files for TestU01 tests named `*-rev.txt` use the `-r` option for `TestU01_stdin` to reverse the order of bits within each 32-bit word. When this results in more failures, it points towards randomness in the lowest bits being of worse quality than that in higher bits. (TestU01 is less sensitive to flaws in the lowest bits.)
+The files for TestU01 tests named `*-rev.txt` use the `-r` option for `TestU01_stdin` to reverse the order of bits within each 32-bit word. When this results in more failures, it may point towards randomness in the lowest bits being of worse quality than that in higher bits. (TestU01 is less sensitive to flaws in the lowest bits.) However, when testing some PRNGs the number of BigCrush failures for both normal and `-r` testing varies haphazardly (and often in opposite directions), with small variations to the PRNG, so that looking at both results and considering the average may be more sensible.

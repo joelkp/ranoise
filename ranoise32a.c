@@ -1,4 +1,4 @@
-/* ranoise32b test program
+/* ranoise32a (best in TestU01) test program
  * Copyright (c) 2022 Joel K. Pettersson
  * <joelkpettersson@gmail.com>.
  *
@@ -27,11 +27,11 @@
  *
  * \return pseudo-random number for index \p n
  */
-static inline int32_t ranoise32b(uint32_t n) {
+static inline int32_t ranoise32a(uint32_t n) {
 	uint32_t s = n * FIBH32;
-	s ^= s >> 15;
-	s = MUVAROR32(s, s >> 27, 0);
 	s ^= s >> 14;
+	s = MUVAROR32(s, s >> 27, 0);
+	s ^= s >> 13;
 	return s;
 }
 
@@ -46,11 +46,11 @@ static inline int32_t ranoise32b(uint32_t n) {
  *
  * \return pseudo-random number for state \p pos
  */
-static inline int32_t ranoise32b_next(uint32_t *restrict pos) {
+static inline int32_t ranoise32a_next(uint32_t *restrict pos) {
 	uint32_t s = *pos += FIBH32;
-	s ^= s >> 15;
-	s = MUVAROR32(s, s >> 27, 0);
 	s ^= s >> 14;
+	s = MUVAROR32(s, s >> 27, 0);
+	s ^= s >> 13;
 	return s;
 }
 
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 	for (;;) {
 		/* chaos waveshaper test */
 		uint32_t x = i++;
-		add_output(ranoise32b(x));
+		add_output(ranoise32a(x));
 	}
 	return 0;
 }
