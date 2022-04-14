@@ -65,15 +65,18 @@ int32_t ranoise32a(uint32_t x) {
         return x;
 }
 ```
+(An alternative choice of bitshift lengths, 15 and 14 instead of 14 and 13, improves PractRand's evaluation a little, failures appearing at 4 GB instead when testing with various starting values, but it also worsens TestU01 test failures a little: one normal Crush failure, 10 `-r` BigCrush failures.)
 
 #### `ranoise32b`
-Changing the bitshift lengths from 14 and 13 to 15 and 14 improves PractRand's evaluation (some failures appearing at 4 GB), but increases TestU01 test failures a little (one normal Crush failure, 10 `-r` BigCrush failures).
+Re-adding a bitrotation offset number can significantly improve how well it does in PractRand, without significantly worsening the TestU01 scores, at least when a good choice of number is made (16 seems optimal here). With various starting values, the below version has a few failings during PractRand's 16 GB stage. Meanwhile, BigCrush failures have gone up to 7 (6 in `-r`), Crush failures to 1 (2 in `-r`).
 ```
 int32_t ranoise32b(uint32_t x) {
+        uint32_t r;
         x *= 2654435769UL;
-        x ^= x >> 15;
-        x = (x | 1) * ((x >> (x >> 27)) | (x << (32-(x >> 27))));
         x ^= x >> 14;
+        r = (x >> 27) + 16;
+        x = (x | 1) * ((x >> r) | (x << (32-r)));
+        x ^= x >> 13;
         return x;
 }
 ```

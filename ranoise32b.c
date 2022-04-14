@@ -17,9 +17,9 @@
 #include "testwrite.h"
 
 /**
- * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
- * simple, number sequences into white noise. Returns zero for zero. This is an
- * improved version of ranoise32_old(), which passes more statistical tests and
+ * Random access noise, a 2nd higher-quality version. Chaotic waveshaper, which
+ * turns sawtooth-ish number sequences into white noise. Returns zero for zero.
+ * An improved version of ranoise32a(), which passes more statistical tests and
  * with small overhead is more suitable for general non-cryptographic purposes.
  *
  * This function is mainly an alternative to using buffers of noise, for random
@@ -28,17 +28,18 @@
  * \return pseudo-random number for index \p n
  */
 static inline int32_t ranoise32b(uint32_t n) {
-	uint32_t s = n * FIBH32;
-	s ^= s >> 15;
-	s = MUVAROR32(s, s >> 27, 0);
+	uint32_t s = n * FIBH32, r;
 	s ^= s >> 14;
+	r = (s >> 27) + 16;
+	s = (s | 1) * ROR32(s, r);
+	s ^= s >> 13;
 	return s;
 }
 
 /**
- * Random access noise. Chaotic waveshaper which turns evenly spaced, and other
- * simple, number sequences into white noise. Returns zero for zero. This is an
- * improved version of ranoise32_old(), which passes more statistical tests and
+ * Random access noise, a 2nd higher-quality version. Chaotic waveshaper, which
+ * turns sawtooth-ish number sequences into white noise. Returns zero for zero.
+ * An improved version of ranoise32a(), which passes more statistical tests and
  * with small overhead is more suitable for general non-cryptographic purposes.
  *
  * This "next" function returns a new value each time, corresponding to a state
@@ -47,10 +48,11 @@ static inline int32_t ranoise32b(uint32_t n) {
  * \return pseudo-random number for state \p pos
  */
 static inline int32_t ranoise32b_next(uint32_t *restrict pos) {
-	uint32_t s = *pos += FIBH32;
-	s ^= s >> 15;
-	s = MUVAROR32(s, s >> 27, 0);
+	uint32_t s = *pos += FIBH32, r;
 	s ^= s >> 14;
+	r = (s >> 27) + 16;
+	s = (s | 1) * ROR32(s, r);
+	s ^= s >> 13;
 	return s;
 }
 
