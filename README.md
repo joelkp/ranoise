@@ -3,13 +3,14 @@ Random access noise algorithms & test programs
 
 This repository contains a copy of my PRNG algorithms, some others for comparison, and related things. It includes test programs, to generate streams of pseudo-random `int` data sent to `stdout` (for use with statistical tests, e.g. `dieharder` or `TestU01_stdin`), and other code of my own. Note that most testing is for _sequential_ use of a PRNG, while the whole point of my own PRNGs is to also allow _random access_ (similar to integer-to-integer hashing) with the simplest code that does the job well enough. Other PRNGs are usually better for sequential purposes.
 
-The basic idea of the "ranoise" functions is to use a simple counter as the state for random number generation. Position can be changed with various positive or negative frequencies, and "jumps" in the stream of noise are trivial. Chaotic waveshaping replaces the current input number with the pseudo-random number it indexes. A sawtooth-ish signal is transformed into white noise. Given their simplicity, these functions can be a good alternative to storing and using arrays of white noise.
+The basic idea of the "ranoise" functions is to use a simple counter as the state for random number generation. Position can be changed with various positive or negative frequencies, and "jumps" in the stream of noise are trivial. Chaotic waveshaping replaces the current input number with the pseudo-random number it indexes. A sawtooth-ish signal is transformed into white noise. Given their simplicity, these functions can be a good alternative to storing and using arrays of white noise. But other alternatives exist for this as well.
 
 For each "ranoise" function, a function named with a `_next`-suffix is also provided; it instead behaves like a normal sequential access PRNG function for getting a next value, updating a passed state on each call. The state should be initialized before the first call to some value (any seed value is fine, including 0).
 
 See the article "[Random access noise: Avalanche effect through chaotic waveshaping](https://joelkp.frama.io/blog/ran-chaos-waveshape.html)" for more on the development of all this. Currently, programs for the following versions are included:
  * `ranoise32` -- Minimal lower-quality version (compares well to 32-bit LCGs)
- * `ranoise32_old` -- Older medium-quality version (mostly obsoleted by `ranoise32b`)
+ * `ranfast32` -- Faster alternative medium-quality version
+ * `ranoise32_old` -- Older lower-quality version
  * `ranoise32a` -- Higher-quality version (compares well to SplitMix32)
  * `ranoise32b` -- Slightly different version, does better in PractRand testing
 
@@ -23,12 +24,14 @@ The bare functions
 While arguably uglier than using the macros or inline functions for bitrotation, etc., here's everything-in-one-go versions of the function definitions.
 
 ### My ranoise functions
-For audio, there's no audible improvement when including the xor-and-rightshift steps which were added to improve avalanching and quality of bits below the highest, assuming the higher bits define most of the amplitude of the signal listened to in the usual way. The same may be true for graphics and what's visible. However, those looking to extract two rather than one samples from each output value (splitting each 32-bit sample into two 16-bit samples) need one of the highest-quality options.
+There's one practical issue with using the functions named ranoise32-something, they are not that fast compared to other functions. The SplitMix32 functions are faster on my x86-64 system (that varying bitrotation is slow!). For weaker randomness, `ranfast32` is however slightly faster than the SplitMix32s.
+
+For audio, there's no audible improvement to the more elaborate versions (e.g. adding xor-and-rightshift steps to improve avalanching and quality of lower bits), assuming the higher bits define most of the amplitude of the signal listened to in the usual way. The same may be true for graphics and what's visible. However, those looking to extract two rather than one samples from each output value (splitting each 32-bit sample into two 16-bit samples) need one of the higher-quality options (those comparable to SplitMix32).
 
 #### `ranoise32`
-Stripped-down version of `ranoise32a`, containing only the most important part of the algorithm.
+Stripped-down version of `ranoise32a`, containing only the most important part of the algorithm -- with a view to using a varying bitrotation.
 
-Tested with an increasing counter as the argument, it fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer; this is also the case in both PractRand and dieharder testing.
+Tested with an increasing counter as the argument, it fails some TestU01 SmallCrush tests and as such is comparable to both 32-bit LCGs and xorshift32. The failures are more like those of LCGs, but fewer; this is also the case in both PractRand (1 MB stage failures, still) and dieharder testing.
 ```
 int32_t ranoise32(uint32_t x) {
         x *= 2654435769UL;
@@ -36,9 +39,22 @@ int32_t ranoise32(uint32_t x) {
         return x;
 }
 ```
-This is the function most likely to be useful for signal processing purposes, in situations where how it sounds or looks matters far more than statistical properties. The higher output bits are the best.
-
 It's possible to add a bitrotation offset so as to produce one of 31 alternative outputs (easiest to do using the `MUVAROR32` macro used in the C file, by changing the last argument from 0 to another number).
+
+#### `ranfast32`
+Another way to strip down `ranoise32a` is to remove the bitrotation and just multiply. This passes TestU01 SmallCrush, and indeed I originally used this weakened form of the function while testing for the best bitshift constants to use (because arriving at failed statistical tests then took far less time).
+
+Later, disappointed by the poor speed of ranoise32 on x86 compared to SplitMix32, I decided to revisit this as a faster option. In other statistical tests, it's worse than SplitMix32, but better than 32-bit LCGs, xorshift32, and the lower-quality ranoise32 functions. In PractRand testing, it fails at 16 MB.
+```
+int32_t ranfast32(uint32_t x) {
+        x *= 2654435769UL;
+        x ^= x >> 14;
+        x = (x | 1) * x;
+        x ^= x >> 13;
+        return x;
+}
+```
+This is the ranoise-related function most likely to be useful for signal processing purposes, in situations where how it sounds or looks matters far more than statistical properties. The higher output bits are the best.
 
 #### `ranoise32_old`
 This is an earlier version with some quirks and flaws, worth keeping for the distinctive smoothness of the output. It works well as long as changes to x between calls are small or have lower bits set.
@@ -87,7 +103,9 @@ Other interesting functions
 Here's some other PRNGs that could very easily be used in place of ranoise32 functions. This also includes ease of random access use, or of changing a function for such.
 
 ### SplitMix32 variations
-Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush. The 32-bit version of SplitMix does poorer in testing with both TestU01 (failing some Crush and more BigCrush tests) and PractRand, however. Higher-quality variations of ranoise32 do better in testing.
+Variations of SplitMix32 are intuitively part of the main competition, given that SplitMix64 is a good PRNG which passes BigCrush. The 32-bit version of SplitMix does poorer in testing with both TestU01 (failing some Crush and more BigCrush tests) and PractRand, however. Higher-quality variations of ranoise32 do better in statistical testing.
+
+SplitMix32 is quite fast, of the ranoise-related functions only `ranfast32` beats it in performance testing on x86-64.
 
 #### `splitmix32a`
 A seemingly popular variation of SplitMix32 changes the first bitshift length from 16 to 15. It is included under the name `splitmix32a` in this repository, and fares slightly better than plain `splitmix32` in Crush and BigCrush tests (5 or 4 failures in Crush, 9 in BigCrush). In PractRand, this variation fails during the 1 GB stage, whereas plain `splitmix32` fails in the preceding 512 MB round.
